@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skyline — a live weather dashboard powered by the Open-Meteo API. Vanilla HTML, CSS and JavaScript." />
+  <title>Skyline · Live Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%85%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,0.65);color:#fff;text-decoration:none;font:500 13px/1.4 system-ui;backdrop-filter:blur(6px)">&#8592; Portfolio</a>
+  <div class="bg-decor" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to the dashboard</a>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-art" src="assets/img/photo-hero.jpg" alt="Stock photograph: a wide city skyline at dusk seen across a bay, tower lights on, beneath heavy purple and orange cloud." width="960" height="540" fetchpriority="high" decoding="async" />
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M3 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M5 20v-8l4-3v11M13 20V6l6 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="18.5" cy="4.5" r="2" fill="currentColor" opacity=".8"/>
+        </svg>
+        <p class="brand-name">Skyline</p>
+        <span class="brand-tag">live weather</span>
+      </div>
+      <nav class="site-nav" aria-label="Sections of this page">
+        <a href="#live">Live dashboard</a>
+        <a href="#cities">Cities this week</a>
+        <a href="#data">How the data works</a>
+        <a href="#fields">Reading the forecast</a>
+      </nav>
+    </header>
+
+    <div class="hero-body wrap">
+      <p class="hero-eyebrow">A personal project by Faraz Malang Jan</p>
+      <h1 id="hero-title" class="hero-title">Read the sky of<br />any city on Earth</h1>
+      <p class="hero-tagline">Type a place &mdash; Kyoto, Lagos, a village you grew up near &mdash; and get live conditions, the next 24 hours and a seven-day outlook in seconds.</p>
+      <p class="hero-note">Skyline is a personal demo project, not client work. It is hand-built in plain HTML, CSS and JavaScript, and every number it shows is live data pulled straight from the free <strong>Open-Meteo</strong> public API &mdash; nothing here is simulated or pre-recorded.</p>
+      <p class="hero-cta">
+        <a class="btn btn-hero" href="#live">Open the live dashboard</a>
+        <a class="text-link" href="#data">How the data works</a>
+      </p>
+      <ul class="hero-strip">
+        <li><strong>2</strong> public Open-Meteo endpoints</li>
+        <li><strong>7</strong> days of outlook</li>
+        <li><strong>&deg;C / &deg;F</strong> toggle, remembered</li>
+        <li><strong>0</strong> API keys, accounts or backends</li>
+      </ul>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- ===================== LIVE DASHBOARD ===================== -->
+    <section class="section" id="live" aria-labelledby="live-heading">
+      <div class="wrap">
+        <div class="section-head section-head--split">
+          <div>
+            <p class="section-kicker">The dashboard</p>
+            <h2 id="live-heading" class="section-title">One search box, then the real weather</h2>
+          </div>
+          <p class="section-lede">Search a city or share your location. Skyline resolves it to coordinates, asks Open-Meteo for that spot, and renders whatever comes back &mdash; including the local clock in the city&rsquo;s own timezone.</p>
+        </div>
+
+        <div class="dash-toolbar">
+          <p class="toolbar-label">Units</p>
+          <div class="unit-toggle" role="group" aria-label="Temperature unit">
+            <button type="button" id="btn-celsius" class="unit-btn is-active" aria-pressed="true" data-unit="c">&deg;C</button>
+            <button type="button" id="btn-fahrenheit" class="unit-btn" aria-pressed="false" data-unit="f">&deg;F</button>
+          </div>
+        </div>
+
+        <div class="dash-stack">
+    <!-- Search -->
+    <section class="search-section" aria-label="City search">
+      <div class="search-wrap" id="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input type="search" id="city-input" class="city-input" placeholder="Search a city &mdash; e.g. Oslo, Tokyo, Lisbon&hellip;"
+               autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false"
+               aria-controls="suggestions" aria-autocomplete="list" aria-label="Search city" />
+        <button type="button" id="btn-geolocate" class="geo-btn" title="Use my location" aria-label="Use my location">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 2.2a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6Z" fill="currentColor"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul id="suggestions" class="suggestions" role="listbox" aria-label="City suggestions" hidden></ul>
+        <p id="search-status" class="sr-only" role="status" aria-live="polite"></p>
+      </div>
+      <p class="geo-hint" id="geo-hint" hidden></p>
+    </section>
+
+    <!-- Error banner -->
+    <section id="error-banner" class="error-banner" hidden role="alert">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M12 3 1.8 20.2h20.4L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M12 10v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="17.3" r="1" fill="currentColor"/>
+      </svg>
+      <div class="error-copy">
+        <strong id="error-title">Something went wrong</strong>
+        <span id="error-detail"></span>
+      </div>
+      <button type="button" id="btn-retry" class="retry-btn">Retry</button>
+    </section>
+
+    <!-- Skeletons -->
+    <div id="skeleton-wrap" hidden aria-hidden="true">
+      <div class="card hero-card skeleton-card">
+        <div class="sk sk-line w-40"></div>
+        <div class="sk sk-big"></div>
+        <div class="sk-grid">
+          <div class="sk sk-chip"></div><div class="sk sk-chip"></div>
+          <div class="sk sk-chip"></div><div class="sk sk-chip"></div>
+        </div>
+      </div>
+      <div class="card chart-card skeleton-card">
+        <div class="sk sk-line w-30"></div>
+        <div class="sk sk-chart"></div>
+      </div>
+      <div class="strip-skeleton">
+        <div class="sk sk-day"></div><div class="sk sk-day"></div><div class="sk sk-day"></div>
+        <div class="sk sk-day"></div><div class="sk sk-day"></div><div class="sk sk-day"></div>
+        <div class="sk sk-day"></div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <section id="empty-state" class="empty-state" hidden>
+      <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true" class="empty-icon">
+        <path d="M20 44a9 9 0 0 1 1.5-17.9A13 13 0 0 1 46 28.5 8.5 8.5 0 0 1 45 45.5H20Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="m24 54 4-6M34 56l4-6M44 54l4-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+      </svg>
+      <h2>No location selected</h2>
+      <p>Skyline reads live data from the Open-Meteo API. Search for a city above, or share your location with the crosshair button.</p>
+    </section>
+
+    <!-- Dashboard -->
+    <div id="dashboard" hidden>
+      <section class="card hero-card" id="hero-card" aria-live="polite" aria-label="Current conditions">
+        <div class="hero-top">
+          <div>
+            <h2 class="hero-place" id="hero-place">&mdash;</h2>
+            <p class="hero-meta" id="hero-meta">&mdash;</p>
+          </div>
+          <div class="hero-icon" id="hero-icon" role="img" aria-label="Weather icon"></div>
+        </div>
+        <div class="hero-temp-row">
+          <span class="hero-temp" id="hero-temp">&mdash;</span>
+          <div class="hero-desc-col">
+            <span class="hero-desc" id="hero-desc">&mdash;</span>
+            <span class="hero-feels" id="hero-feels">&mdash;</span>
+          </div>
+        </div>
+        <ul class="hero-stats" id="hero-stats"></ul>
+      </section>
+
+      <section class="card chart-card" aria-label="Next 24 hours forecast">
+        <div class="chart-head">
+          <h3>Next 24 hours</h3>
+          <div class="chart-legend" aria-hidden="true">
+            <span class="lg-item"><span class="lg-swatch lg-line"></span>Temperature</span>
+            <span class="lg-item"><span class="lg-swatch lg-bar"></span>Rain chance</span>
+          </div>
+        </div>
+        <div class="chart-scroll">
+          <div id="temp-chart" class="temp-chart"></div>
+        </div>
+      </section>
+
+      <section class="week-section" aria-label="7-day forecast">
+        <h3 class="week-title">7-day outlook</h3>
+        <div class="week-strip" id="week-strip" role="list"></div>
+      </section>
+    </div>
+        </div><!-- /.dash-stack -->
+      </div>
+    </section>
+
+    <!-- ===================== CITIES THIS WEEK ===================== -->
+    <section class="section section--band" id="cities" aria-labelledby="cities-heading">
+      <div class="wrap">
+        <div class="section-head section-head--split">
+          <div>
+            <p class="section-kicker">Cities this week</p>
+            <h2 id="cities-heading" class="section-title">Four skies worth knowing about</h2>
+          </div>
+          <p class="section-lede">A standing selection of climates rather than a news feed: what each place is made of geographically, and when its weather is at its most likeable. No forecasts here &mdash; those live upstairs.</p>
+        </div>
+
+        <div class="city-grid">
+          <article class="city-card">
+            <div class="city-media">
+              <img src="assets/img/city-reykjavik.svg" alt="Illustration of a northern harbour town of low painted rooftops beneath a snow-dusted ridge." width="1024" height="768" loading="lazy" decoding="async" />
+              <span class="city-koppen">Subpolar oceanic &middot; Cfc</span>
+            </div>
+            <div class="city-body">
+              <h3 class="city-name">Reykjav&iacute;k</h3>
+              <p class="city-region">Iceland &middot; on Faxafl&oacute;i bay, near the Arctic Circle</p>
+              <p class="city-blurb">One of the northernmost capital regions on Earth, and far milder than its latitude promises because the North Atlantic Drift keeps arriving with warm water. Maritime air masses collide here routinely, which is why local weather turns over several times in a day. Winter brings very short days and aurora season; summer brings light that hardly ends.</p>
+              <p class="city-when"><b>When to go</b> Late June to early August for continuous daylight &mdash; February to March if the aurora is the point.</p>
+              <a class="city-live" href="#live"><span class="live-dot" aria-hidden="true"></span>Search &ldquo;Reykjav&iacute;k&rdquo; above for live conditions</a>
+            </div>
+          </article>
+
+          <article class="city-card">
+            <div class="city-media">
+              <img src="assets/img/city-tokyo.svg" alt="Illustration of a dense tower cluster with a snow-capped mountain on the horizon under a clear sky." width="1024" height="768" loading="lazy" decoding="async" />
+              <span class="city-koppen">Humid subtropical &middot; Cfa</span>
+            </div>
+            <div class="city-body">
+              <h3 class="city-name">Tokyo</h3>
+              <p class="city-region">Japan &middot; the Kant&#333; Plain, facing the bay</p>
+              <p class="city-blurb">A vast plain-city with the ocean a short train ride from the centre and four genuinely separate seasons. Winters tend to be dry and bright under cold north-west winds, spring is mild and blossom-famed, early summer arrives with the rainy season, and late summer turns hot, humid and typhoon-prone.</p>
+              <p class="city-when"><b>When to go</b> Late March to early April for the blossom, or October to November for the clearest, driest air.</p>
+              <a class="city-live" href="#live"><span class="live-dot" aria-hidden="true"></span>Search &ldquo;Tokyo&rdquo; above for live conditions</a>
+            </div>
+          </article>
+
+          <article class="city-card">
+            <div class="city-media">
+              <img src="assets/img/city-marrakesh.svg" alt="Illustration of ochre rammed-earth walls and a square minaret with palm trees, snow-capped mountains behind." width="1024" height="768" loading="lazy" decoding="async" />
+              <span class="city-koppen">Hot semi-arid &middot; BSh</span>
+            </div>
+            <div class="city-body">
+              <h3 class="city-name">Marrakesh</h3>
+              <p class="city-region">Morocco &middot; inland plain below the High Atlas</p>
+              <p class="city-blurb">Set on a high plain at the foot of the snow-capped High Atlas, so the forecast reads two landscapes at once: baked, rain-scarce city below, alpine ridge above. Summer heat is severe and rain is a rarity, while winter days stay mild in the sun and cool off sharply once it sets.</p>
+              <p class="city-when"><b>When to go</b> March to May, or October and November, when the medina is comfortably walkable by day.</p>
+              <a class="city-live" href="#live"><span class="live-dot" aria-hidden="true"></span>Search &ldquo;Marrakesh&rdquo; above for live conditions</a>
+            </div>
+          </article>
+
+          <article class="city-card">
+            <div class="city-media">
+              <img src="assets/img/city-singapore.svg" alt="Illustration of a tropical harbour skyline beneath towering evening cumulus clouds with rain falling over the water." width="1024" height="768" loading="lazy" decoding="async" />
+              <span class="city-koppen">Tropical rainforest &middot; Af</span>
+            </div>
+            <div class="city-body">
+              <h3 class="city-name">Singapore</h3>
+              <p class="city-region">Singapore &middot; just off the equator, on the Malacca Strait</p>
+              <p class="city-blurb">A degree or so from the equator, so day length barely shifts across the year and the temperature holds in a narrow band &mdash; rain, not heat, is what makes the weather here. The monsoons trade wet seasons back and forth across the strait, and convective thunderstorms build most afternoons.</p>
+              <p class="city-when"><b>When to go</b> February to early April, the driest stretch of the year, still humid and still green.</p>
+              <a class="city-live" href="#live"><span class="live-dot" aria-hidden="true"></span>Search &ldquo;Singapore&rdquo; above for live conditions</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="callout"><strong>About these cards.</strong> The descriptions above are general climatology &mdash; geography and seasonal character, deliberately free of anything time-sensitive. The artwork on these four cards is hand-drawn illustration, not photography. For an actual reading, use the dashboard: anything with a live dot comes from Open-Meteo at request time.</p>
+      </div>
+    </section>
+
+    <!-- ===================== ATMOSPHERE PHOTO BAND ===================== -->
+    <figure class="photo-band">
+      <img src="assets/img/photo-london.jpg"
+           alt="Stock photograph: aerial view of central London with the Thames winding through the city under low cloud."
+           width="960" height="613" loading="lazy" decoding="async" />
+      <figcaption class="wrap">Atmosphere, not evidence &mdash; a CC0 stock photograph of <b>London</b> (&ldquo;London England&rdquo; by Rob Bye, StockSnap.io). It is not a screenshot of this dashboard and does not depict Reykjav&iacute;k, Tokyo, Marrakesh or Singapore.</figcaption>
+    </figure>
+
+    <!-- ===================== HOW THE DATA WORKS ===================== -->
+    <section class="section" id="data" aria-labelledby="data-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">How the data works</p>
+          <h2 id="data-heading" class="section-title">Two public endpoints, called straight from your browser</h2>
+          <p class="section-lede">Skyline has no server of its own. It is a static page that makes two HTTP requests, in this order, and renders exactly what comes back.</p>
+        </div>
+
+        <div class="flow">
+          <ol class="flow-steps">
+            <li>
+              <h3>Geocode the place you typed</h3>
+              <p>Your search text goes to Open-Meteo&rsquo;s geocoding endpoint, which answers with up to five matches &mdash; each carrying a name, region, country and, crucially, a latitude and longitude. That is what fills the suggestion list under the search box.</p>
+              <code class="endpoint"><b>Step 1 &middot; geocoding</b>https://geocoding-api.open-meteo.com/v1/search?name=..&amp;count=5&amp;language=en&amp;format=json</code>
+            </li>
+            <li>
+              <h3>Ask for the forecast at those coordinates</h3>
+              <p>Choosing a match fires a second request for that exact point: current temperature, humidity, apparent temperature, weather code and wind; hourly temperature and precipitation probability for the 24-hour chart; and daily maxima, minima, weather code, sunrise and sunset for seven days.</p>
+              <code class="endpoint"><b>Step 2 &middot; forecast</b>https://api.open-meteo.com/v1/forecast?latitude=..&amp;longitude=..&amp;current=..&amp;hourly=..&amp;daily=..&amp;timezone=auto&amp;forecast_days=7</code>
+            </li>
+            <li>
+              <h3>Render it, honestly</h3>
+              <p>With <code>timezone=auto</code> the API replies in the city&rsquo;s own local time, so the clock, sunrise and sunset all belong to the place you searched &mdash; not to wherever you happen to be. Night-time swaps the clear-sky icon for a moon. If you search again mid-flight, the outstanding request is cancelled rather than allowed to land out of order.</p>
+            </li>
+          </ol>
+
+          <div class="flow-side">
+            <aside class="aside-card" aria-label="What Skyline does not need">
+              <h3>No key. No account. No backend.</h3>
+              <p>There is no API key hidden in this page, no sign-in, and no proxy server of mine sitting between you and the data. The requests leave your browser for Open-Meteo directly.</p>
+              <p>The only thing stored is your last chosen city and unit, in this browser&rsquo;s <code>localStorage</code>, so the dashboard reopens where you left it. Location access is used only if you press the crosshair, and those coordinates never go anywhere except the forecast request.</p>
+              <p>Open-Meteo publishes non-commercial use of its API for free, which is the whole reason a personal project like this can show real numbers at all. Data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a>.</p>
+            </aside>
+            <figure class="photo-side">
+              <img src="assets/img/photo-sf.jpg"
+                   alt="Stock photograph: aerial view of the San Francisco skyline, the Transamerica Pyramid rising among the high-rises."
+                   width="960" height="640" loading="lazy" decoding="async" />
+              <figcaption>Every coordinate resolves to a real roofline &mdash; this CC0 stock photograph is <b>San Francisco</b> (&ldquo;Sanfrancisco Buildings&rdquo; by Jared Erondu, StockSnap.io), an atmosphere shot, not one of the dashboard&rsquo;s four cities.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FIELD EXPLAINER ===================== -->
+    <section class="section section--band" id="fields" aria-labelledby="fields-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">Reading the forecast</p>
+          <h2 id="fields-heading" class="section-title">What the fields on screen actually mean</h2>
+          <p class="section-lede">Weather numbers are easy to read and easy to misread. A short glossary for the labels Skyline shows.</p>
+        </div>
+
+        <dl class="field-list">
+          <div>
+            <dt>Apparent temperature &mdash; &ldquo;feels like&rdquo;</dt>
+            <dd>The temperature the air seems to be, once humidity, wind and sunlight are folded in, rather than the dry-bulb air temperature on its own. Wind strips away the warm layer your body holds close, so moving air reads colder; humid air blocks evaporation from skin, so it reads warmer. It is an index of human heat exchange, not a separate physical measurement of the atmosphere.
+              <figure class="field-photo">
+                <img src="assets/img/photo-aerial.jpg"
+                     alt="Stock photograph: first-person view of a person&rsquo;s legs dangling over the edge of a skyscraper roof, the city far below."
+                     width="960" height="640" loading="lazy" decoding="async" />
+                <figcaption>Wind and altitude change what the same reading feels like &mdash; a CC0 stock photograph from StockSnap.io (&ldquo;Aerial View&rdquo; by Alex Wong), an atmosphere shot of no city this page names.</figcaption>
+              </figure>
+            </dd>
+          </div>
+          <div>
+            <dt>Weather code</dt>
+            <dd>A number from the WMO code 4677 table &mdash; the international shorthand weather services exchange. It is a category, not a count of drops: one code covers a light drizzle and a moderate one. Open-Meteo returns the code; Skyline maps it to a phrase and a hand-drawn icon.</dd>
+            <ul class="code-scale" aria-label="Weather code groups used by this page">
+              <li>0 &mdash; clear sky</li>
+              <li>1&ndash;3 &mdash; mainly clear to overcast</li>
+              <li>45, 48 &mdash; fog and rime fog</li>
+              <li>51&ndash;57 &mdash; drizzle, incl. freezing</li>
+              <li>61&ndash;67 &mdash; rain, incl. freezing</li>
+              <li>71&ndash;77 &mdash; snowfall and grains</li>
+              <li>80&ndash;82 &mdash; rain showers</li>
+              <li>85, 86 &mdash; snow showers</li>
+              <li>95&ndash;99 &mdash; thunderstorm, with hail</li>
+            </ul>
+          </div>
+          <div>
+            <dt>Daily minimum and maximum</dt>
+            <dd>The lowest and highest air temperature expected across that calendar day <em>in the city&rsquo;s own timezone</em> &mdash; not in the twenty-four hours from now. That distinction matters when you are reading a forecast for a place on the other side of you: the low may still be hours away in your terms.</dd>
+          </div>
+          <div>
+            <dt>Rain chance</dt>
+            <dd>Shown as bars behind the 24-hour line and as a percentage per day. It is the probability of at least a wetting amount falling &mdash; commonly taken as 0.2&nbsp;mm or more &mdash; not a statement of how heavy it will be. A high chance can still mean a brief shower; a low one is not a guarantee of dry.
+              <figure class="field-photo">
+                <img src="assets/img/photo-rain.jpg"
+                     alt="Stock photograph: a red umbrella held up at night in falling rain, city lights blurred behind it."
+                     width="960" height="640" loading="lazy" decoding="async" />
+                <figcaption>What a 70% chance can look like on the ground &mdash; a CC0 stock photograph from StockSnap.io (&ldquo;Red Umbrella&rdquo; by Gabriel Santiago), an atmosphere shot, not a scene from the dashboard or its four cities.</figcaption>
+              </figure>
+            </dd>
+          </div>
+          <div>
+            <dt>Sunrise, sunset and the local clock</dt>
+            <dd>Computed from the location and timezone of the city you searched. The header clock ticks in that zone, so it can legitimately disagree with your own watch, and the day-one row in the 7-day strip uses it as &ldquo;today&rdquo;.</dd>
+          </div>
+        </dl>
+
+        <p class="callout"><strong>Where the limits are.</strong> Forecast skill falls away with lead time, so the last days of the strip are a tendency rather than a promise, and a city-sized error in the geocoding choice can put you somewhere unexpected &mdash; the suggestion list shows the region and country for that reason. This is also a personal demo: if a request fails, there is no cache or second provider to fall back on, so the page says so plainly and offers Retry instead of showing you a stale number.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="More projects by Faraz">
+        <a href="../index.html">&larr; Portfolio home</a>
+        <a href="../focus-flow/index.html">Focus Flow &middot; pomodoro timer</a>
+        <a href="../palazzo/index.html">Palazzo &middot; trattoria concept</a>
+        <a href="../react-demo/index.html">Splitzy &middot; React demo</a>
+      </nav>
+      <p class="footer-credit">Built by Faraz Malang Jan &mdash; Skyline, a personal weather-dashboard demo.</p>
+      <p class="footer-note">Weather data is live from the free public <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> API; nothing on the dashboard is simulated. The four city-card pictures are placeholder illustrations drawn for this demo as hand-authored vector graphics &mdash; they are not photography of those places and carry no weather information. The photographs used elsewhere on this page (hero, band and article images) are CC0 stock images from StockSnap.io: atmosphere shots of other cities, not screenshots of this dashboard and not images of Reykjav&iacute;k, Tokyo, Marrakesh or Singapore.</p>
+      <p class="footer-note photo-credits"><b>Photo credits:</b> City Skyline &mdash; Joe deSousa, StockSnap.io (CC0) &middot; Red Umbrella &mdash; Gabriel Santiago, StockSnap.io (CC0) &middot; Aerial View &mdash; Alex Wong, StockSnap.io (CC0) &middot; London England &mdash; Rob Bye, StockSnap.io (CC0) &middot; Sanfrancisco Buildings &mdash; Jared Erondu, StockSnap.io (CC0).</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

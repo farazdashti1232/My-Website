@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768" role="img" aria-label="A tropical harbour skyline beneath towering evening cumulus clouds with a squall of rain falling over the water.">
+  <!-- Singapore: equatorial cumulus, squall line, harbour towers, tropical canopy. Local vector placeholder art. -->
+  <defs>
+    <linearGradient id="sg-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16354f"/><stop offset="0.30" stop-color="#3f7095"/>
+      <stop offset="0.58" stop-color="#84aec5"/><stop offset="0.80" stop-color="#c9dcc9"/><stop offset="1" stop-color="#e6dcbc"/>
+    </linearGradient>
+    <linearGradient id="sg-cum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f8fb"/><stop offset="0.42" stop-color="#c5d5e1"/><stop offset="1" stop-color="#6f8ba0"/>
+    </linearGradient>
+    <linearGradient id="sg-cumDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b7c9d7"/><stop offset="1" stop-color="#42596e"/>
+    </linearGradient>
+    <linearGradient id="sg-tower" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#173049"/><stop offset="0.5" stop-color="#27506f"/><stop offset="1" stop-color="#122638"/>
+    </linearGradient>
+    <linearGradient id="sg-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#79a8b7"/><stop offset="0.45" stop-color="#33657c"/><stop offset="1" stop-color="#123448"/>
+    </linearGradient>
+    <filter id="sg-soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <radialGradient id="sg-vig" cx="0.5" cy="0.45" r="0.82">
+      <stop offset="0.56" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#08131d" stop-opacity="0.44"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="768" fill="url(#sg-sky)"/>
+  <!-- anvilled cumulus tower -->
+  <g filter="url(#sg-soft)">
+    <path d="M-10 300 C 60 214 190 250 250 190 C 330 116 470 150 520 216 C 600 168 700 224 690 300 C 780 288 830 348 800 400 L-10 412 Z" fill="url(#sg-cum)"/>
+    <ellipse cx="130" cy="176" rx="150" ry="60" fill="#eef4f9" opacity="0.9"/>
+    <ellipse cx="330" cy="132" rx="190" ry="66" fill="#f6fafc" opacity="0.95"/>
+    <ellipse cx="560" cy="168" rx="170" ry="58" fill="#e5eef5" opacity="0.9"/>
+    <ellipse cx="760" cy="238" rx="150" ry="52" fill="#d5e3ec" opacity="0.85"/>
+    <ellipse cx="960" cy="180" rx="140" ry="50" fill="#c6d8e4" opacity="0.8"/>
+  </g>
+  <g filter="url(#sg-soft)" opacity="0.95">
+    <path d="M-10 400 C 120 366 240 424 380 396 C 540 366 660 420 800 398 C 920 380 1000 412 1034 400 L1034 476 L-10 476 Z" fill="url(#sg-cumDark)"/>
+  </g>
+  <!-- squall: rain shafts -->
+  <g stroke="#cfe4ef" stroke-width="2.4" stroke-linecap="round" opacity="0.5">
+    <g transform="rotate(-12 780 420)">
+      <line x1="700" y1="330" x2="700" y2="620"/><line x1="742" y1="370" x2="742" y2="640"/>
+      <line x1="784" y1="322" x2="784" y2="612"/><line x1="826" y1="362" x2="826" y2="636"/>
+      <line x1="868" y1="336" x2="868" y2="618"/><line x1="910" y1="380" x2="910" y2="642"/>
+    </g>
+  </g>
+  <ellipse cx="800" cy="640" rx="230" ry="26" fill="#b9d3e0" opacity="0.24" filter="url(#sg-soft)"/>
+  <!-- skyline -->
+  <g>
+    <rect x="30" y="470" width="64" height="170" fill="url(#sg-tower)"/>
+    <rect x="100" y="512" width="50" height="128" fill="#152a3f"/>
+    <rect x="156" y="430" width="80" height="210" fill="url(#sg-tower)"/>
+    <!-- terraced sky-bridge triple -->
+    <g>
+      <rect x="252" y="446" width="34" height="194" fill="#1b3350"/>
+      <rect x="298" y="446" width="34" height="194" fill="#1b3350"/>
+      <rect x="344" y="446" width="34" height="194" fill="#1b3350"/>
+      <path d="M240 448 q 89 -44 152 0 l-6 20 q -70 -34 -140 0 Z" fill="#2b5170"/>
+      <ellipse cx="316" cy="410" rx="66" ry="14" fill="#365f80"/>
+    </g>
+    <rect x="392" y="486" width="58" height="154" fill="url(#sg-tower)"/>
+    <rect x="458" y="520" width="46" height="120" fill="#14293d"/>
+    <rect x="512" y="396" width="88" height="244" fill="url(#sg-tower)"/>
+    <path d="M512 396 h88 l-44 -46 Z" fill="#22415d"/>
+    <rect x="608" y="470" width="56" height="170" fill="#16293d"/>
+    <rect x="672" y="508" width="46" height="132" fill="#122536"/>
+  </g>
+  <g stroke="#a9d4e6" stroke-width="1.5" opacity="0.28">
+    <path d="M172 452 v168 M190 452 v168 M208 452 v168 M528 418 v204 M548 418 v204 M568 418 v204"/>
+  </g>
+  <g fill="#ffe9b0" opacity="0.5">
+    <rect x="44" y="500" width="8" height="10"/><rect x="70" y="552" width="8" height="10"/><rect x="176" y="486" width="8" height="10"/>
+    <rect x="204" y="548" width="8" height="10"/><rect x="404" y="528" width="8" height="10"/><rect x="536" y="470" width="8" height="10"/>
+    <rect x="572" y="540" width="8" height="10"/><rect x="620" y="510" width="8" height="10"/>
+  </g>
+  <!-- water -->
+  <rect x="0" y="640" width="1024" height="128" fill="url(#sg-sea)"/>
+  <g opacity="0.3" fill="#dff0f5"><rect x="60" y="664" width="760" height="3" rx="1.5"/><rect x="220" y="696" width="600" height="3" rx="1.5"/><rect x="380" y="728" width="360" height="3" rx="1.5"/></g>
+  <path d="M150 654 h96 l-12 14 h-72 Z" fill="#0f2130"/><path d="M600 656 h120 l-14 14 h-92 Z" fill="#0f2130"/>
+  <!-- tropical canopy foreground -->
+  <g>
+    <path d="M-10 768 C 40 700 120 692 160 738 C 210 690 300 700 320 768 Z" fill="#123a2c"/>
+    <path d="M700 768 C 740 706 830 698 872 744 C 920 696 1010 706 1034 768 Z" fill="#0f3327"/>
+    <g stroke="#1c4a36" stroke-width="7" fill="none" stroke-linecap="round">
+      <path d="M240 768 v-70"/><path d="M240 698 l-38 -26 M240 698 l38 -26 M240 706 l-46 6 M240 706 l46 6"/>
+      <path d="M940 768 v-62"/><path d="M940 706 l-34 -22 M940 706 l34 -22 M940 712 l-42 6 M940 712 l42 6"/>
+    </g>
+  </g>
+  <rect width="1024" height="768" fill="url(#sg-vig)"/>
+</svg>

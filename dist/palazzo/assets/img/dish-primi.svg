@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Spaghetti alle vongole, plated dish, placeholder artwork">
+  <defs>
+    <linearGradient id="t2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c3823"/><stop offset="1" stop-color="#171d12"/></linearGradient>
+    <radialGradient id="p2" cx="50%" cy="42%" r="60%"><stop offset="0" stop-color="#f7f0e1"/><stop offset="0.85" stop-color="#efe5cf"/><stop offset="1" stop-color="#e3d5b8"/></radialGradient>
+    <radialGradient id="sh2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity="0.45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#t2)"/>
+  <ellipse cx="400" cy="640" rx="320" ry="70" fill="url(#sh2)"/>
+  <ellipse cx="400" cy="410" rx="300" ry="250" fill="#b9a075"/>
+  <ellipse cx="400" cy="405" rx="288" ry="240" fill="url(#p2)"/>
+  <ellipse cx="400" cy="405" rx="212" ry="172" fill="#f2e6c9"/>
+  <!-- noodle nest -->
+  <g fill="none" stroke="#d9b45f" stroke-width="10" stroke-linecap="round" opacity="0.95">
+    <path d="M300 380c80-40 220-40 300 0"/>
+    <path d="M300 410c80-40 220-40 300 0"/>
+    <path d="M310 440c80-40 200-40 280 0"/>
+    <path d="M320 360c90 30 160 30 250 6"/>
+    <path d="M330 470c70 24 150 24 220 0"/>
+  </g>
+  <g fill="none" stroke="#c99b3f" stroke-width="6" opacity="0.7">
+    <path d="M300 396c80-40 220-40 300 0"/><path d="M315 428c80-40 200-40 280 0"/>
+  </g>
+  <!-- vongole (clams) -->
+  <g>
+    <path d="M300 340a52 52 0 0 1 90 0z" fill="#efe5cf" stroke="#b9a075" stroke-width="3" transform="rotate(-18 345 340)"/>
+    <path d="M470 470a50 50 0 0 1 88 0z" fill="#f7f0e1" stroke="#b9a075" stroke-width="3" transform="rotate(12 514 470)"/>
+    <path d="M430 320a44 44 0 0 1 78 0z" fill="#efe5cf" stroke="#b9a075" stroke-width="3" transform="rotate(24 469 320)"/>
+  </g>
+  <!-- parsley + chili -->
+  <g fill="#3d4d31"><circle cx="360" cy="380" r="6"/><circle cx="430" cy="430" r="5"/><circle cx="480" cy="380" r="5"/><circle cx="340" cy="450" r="5"/></g>
+  <g fill="#c65d33"><circle cx="410" cy="400" r="4"/><circle cx="460" cy="440" r="4"/></g>
+</svg>

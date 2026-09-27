@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Flow — Pomodoro timer &amp; task list</title>
+  <meta name="description" content="A warm, minimal pomodoro focus timer with a built-in task list. Built with vanilla HTML, CSS and JavaScript." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23d97706' stroke-width='12' stroke-dasharray='190 260' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand-mark" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="10"
+                stroke-dasharray="188 260" stroke-linecap="round" />
+      </svg>
+      <h1 class="brand-name">Focus<span class="brand-accent">Flow</span></h1>
+    </div>
+    <button id="mute-toggle" class="icon-btn" type="button" aria-pressed="false"
+            aria-label="Sound is on. Click to mute the completion chime." title="Toggle completion sound">
+      <svg class="icon icon-sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+        <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+      </svg>
+      <svg class="icon icon-sound-off" width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="16" y1="9" x2="22" y2="15"></line>
+        <line x1="22" y1="9" x2="16" y2="15"></line>
+      </svg>
+    </button>
+  </header>
+
+  <main id="main" class="layout">
+    <!-- ============ Timer panel ============ -->
+    <section class="panel panel-timer" aria-labelledby="timer-heading">
+      <h2 id="timer-heading" class="visually-hidden">Pomodoro timer</h2>
+
+      <div class="mode-tabs" role="group" aria-label="Timer mode">
+        <button type="button" class="mode-tab is-active" data-mode="focus" aria-pressed="true">
+          Focus <span class="mode-tab-time">25m</span>
+        </button>
+        <button type="button" class="mode-tab" data-mode="short" aria-pressed="false">
+          Short break <span class="mode-tab-time">5m</span>
+        </button>
+        <button type="button" class="mode-tab" data-mode="long" aria-pressed="false">
+          Long break <span class="mode-tab-time">15m</span>
+        </button>
+      </div>
+
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 280 280" aria-hidden="true">
+          <circle class="ring-track" cx="140" cy="140" r="124"></circle>
+          <circle class="ring-progress" id="ring-progress" cx="140" cy="140" r="124"></circle>
+        </svg>
+        <div class="ring-center">
+          <p id="time-display" class="time-display" role="timer" aria-live="off"
+             aria-label="Time remaining in this session">25:00</p>
+          <p id="phase-label" class="phase-label">Time to focus</p>
+        </div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="btn-start" class="btn btn-primary" type="button">Start</button>
+        <button id="btn-reset" class="btn btn-ghost" type="button">Reset</button>
+      </div>
+
+      <p id="working-on" class="working-on" hidden></p>
+
+      <details class="shortcuts">
+        <summary>Keyboard shortcuts</summary>
+        <dl class="shortcuts-list">
+          <div><dt><kbd>Space</kbd></dt><dd>Start / pause</dd></div>
+          <div><dt><kbd>R</kbd></dt><dd>Reset timer</dd></div>
+          <div><dt><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></dt><dd>Switch mode</dd></div>
+        </dl>
+      </details>
+    </section>
+
+    <!-- ============ Tasks panel ============ -->
+    <section class="panel panel-tasks" aria-labelledby="tasks-heading">
+      <h2 id="tasks-heading">Today&rsquo;s tasks</h2>
+
+      <form id="task-form" class="task-form" autocomplete="off">
+        <label class="visually-hidden" for="task-input">New task name</label>
+        <input id="task-input" type="text" maxlength="120" placeholder="What are you working on?" required />
+        <div class="task-form-side">
+          <label class="visually-hidden" for="task-estimate">Estimated pomodoros</label>
+          <input id="task-estimate" type="number" min="1" max="12" value="1" aria-label="Estimated pomodoros" />
+          <button class="btn btn-primary btn-sm" type="submit">Add</button>
+        </div>
+      </form>
+
+      <ul id="task-list" class="task-list" aria-label="Task list"></ul>
+      <p id="task-empty" class="task-empty">No tasks yet. Add one above, then set it as your current focus so completed pomodoros count toward it.</p>
+
+      <div class="stats" role="group" aria-label="Focus statistics for today">
+        <div class="stat">
+          <span class="stat-value" id="stat-sessions">0</span>
+          <span class="stat-label">Sessions today</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-minutes">0</span>
+          <span class="stat-label">Focus minutes today</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-total">0</span>
+          <span class="stat-label">All-time sessions</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-region" class="toast-region" aria-live="assertive" aria-atomic="true"></div>
+  <p id="sr-status" class="visually-hidden" role="status" aria-live="polite"></p>
+
+  <footer class="site-footer">
+    <p>Designed &amp; built by Faraz Malang Jan &mdash; personal demo project</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

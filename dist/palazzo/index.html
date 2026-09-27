@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palazzo — Trattoria Napoletana (concept project)</title>
+  <meta name="description" content="Palazzo, a fictional Neapolitan trattoria. A concept microsite showcasing brand and front-end craft.">
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,0.65);color:#fff;text-decoration:none;font:500 13px/1.4 system-ui;backdrop-filter:blur(6px)">&#8592; Portfolio</a>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar" id="progressBar"></span></div>
+
+  <!-- Sticky section counter -->
+  <aside class="section-counter" id="sectionCounter" aria-hidden="true">
+    <span class="section-counter__current" id="counterCurrent">01</span>
+    <span class="section-counter__line"></span>
+    <span class="section-counter__total">04</span>
+  </aside>
+
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav__inner">
+      <a class="brand" href="#hero">
+        <span class="brand__mark" aria-hidden="true">P</span>
+        <span class="brand__word">Palazzo<small>trattoria</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <ul>
+          <li><a href="#menu">La Cucina</a></li>
+          <li><a href="#story">La Storia</a></li>
+          <li><a href="#reserve" class="nav-cta">Prenota · Reserve</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" data-counter="01" aria-label="Palazzo — introduction">
+      <!-- Full-bleed photograph, dark scrim for AA text contrast -->
+      <div class="hero__media" aria-hidden="true">
+        <img class="hero__img" src="assets/img/photo-room-hero.jpg" alt="A dim, warm bistro interior: wooden cross-back chairs and marble-topped tables on a patterned tile floor, with framed pictures and a large religious painting hung on exposed brick." width="2048" height="1365" fetchpriority="high">
+        <div class="hero__scrim"></div>
+      </div>
+      <!-- CSS/SVG atmosphere layered over the photo: gradients, geometric shapes, dot pattern -->
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__arc hero__arc--1"></span>
+        <span class="hero__arc hero__arc--2"></span>
+        <svg class="hero__pattern" width="100%" height="100%" preserveAspectRatio="none">
+          <defs>
+            <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.2" fill="currentColor"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dots)"/>
+        </svg>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__kicker" data-kinetic-words>Napoli · dal 1962 · finzione</p>
+        <h1 class="hero__title" data-kinetic-letters>Palazzo</h1>
+        <p class="hero__rule" aria-hidden="true"><span></span>✦<span></span></p>
+        <p class="hero__tagline" data-kinetic-words>Pasta made by hand, sauce made by time.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#menu">See the menu</a>
+          <a class="btn btn--ghost" href="#reserve">Reserve a table</a>
+        </div>
+        <p class="hero__chip">Concept project — Palazzo is a fictional brand</p>
+      </div>
+
+      <a class="hero__scrollhint" href="#menu" aria-label="Scroll to the menu">
+        <span aria-hidden="true">Giro sotto ↓</span>
+      </a>
+    </section>
+
+    <!-- ============ THE ROOM ============ -->
+    <section class="room reveal" id="room" aria-labelledby="room-heading">
+      <div class="room__grid">
+        <figure class="room__media">
+          <img src="assets/img/photo-cafe.jpg" alt="A bright café interior with pink walls, wooden chairs whose backrests have a round cut-out, and a wall of framed paintings and stacked baking tins." width="2048" height="1536" loading="lazy">
+          <figcaption>A sunlit café with pink walls — generic CC0 stock imagery, not Palazzo's dining room (Palazzo has no dining room; it is an invented concept).</figcaption>
+        </figure>
+        <div class="room__copy">
+          <p class="kicker">La Sala · The Room</p>
+          <h2 id="room-heading">Fourteen tables and a low amber light</h2>
+          <p>In the story we wrote for this concept, the dining room seats fourteen beneath a
+            ceiling of hanging lamps, the plates are thick and a little uneven, and the candles
+            are never quite bright enough — which is exactly the point.</p>
+          <p class="room__disclaimer">Everything pictured and described here belongs to a
+            fictional brand. This microsite is a front-end design demo, not a real venue you
+            can visit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="menu reveal" id="menu" data-counter="02" aria-labelledby="menu-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker">01 — La Cucina</p>
+          <h2 id="menu-heading">A menu written by the season</h2>
+          <p class="section-note">Sample dishes for a fictional trattoria. Prices in euro, the way a
+            real Campania kitchen might print them.</p>
+        </header>
+
+        <div class="menu-tabs">
+          <div role="tablist" aria-label="Menu categories" class="tablist">
+            <button role="tab" id="tab-antipasti" aria-controls="panel-antipasti" aria-selected="true" tabindex="0" class="tab">Antipasti</button>
+            <button role="tab" id="tab-primi" aria-controls="panel-primi" aria-selected="false" tabindex="-1" class="tab">Primi</button>
+            <button role="tab" id="tab-secondi" aria-controls="panel-secondi" aria-selected="false" tabindex="-1" class="tab">Secondi</button>
+            <button role="tab" id="tab-dolci" aria-controls="panel-dolci" aria-selected="false" tabindex="-1" class="tab">Dolci</button>
+          </div>
+
+          <div class="panels">
+            <section role="tabpanel" id="panel-antipasti" aria-labelledby="tab-antipasti" class="panel is-active">
+              <figure class="panel__feature">
+                <img src="assets/img/dish-antipasti.svg" alt="Overhead placeholder illustration of burrata with tomatoes and basil" width="800" height="800" loading="lazy">
+                <figcaption>Burrata di Andria — sungold tomatoes, basil oil · illustration, not a photograph</figcaption>
+              </figure>
+              <h3 class="panel__title">Antipasti <span class="panel__sub">to begin, slowly</span></h3>
+              <ul class="dishes">
+                <li class="dish">
+                  <div class="dish__text"><h4>Burrata di Andria</h4><p>Creamy burrata, sungold tomatoes, basil oil, fleur de sel</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€12</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Carciofi alla giudia</h4><p>Crisp fried artichoke from the old Jewish quarter, lemon aïoli</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€9</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Bruschette al pomodoro</h4><p>Grilled pane cafone, datterini, raw garlic, first-press olive oil</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€7</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Alici marinate</h4><p>House-cured anchovies, fennel pollen, Amalfi orange zest</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€8</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Polpette della nonna</h4><p>Beef and bread polpette simmered in Sunday San Marzano sauce</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€9</span>
+                </li>
+              </ul>
+            </section>
+
+            <section role="tabpanel" id="panel-primi" aria-labelledby="tab-primi" class="panel" hidden>
+              <figure class="panel__feature">
+                <img src="assets/img/photo-primi.jpg" alt="Spaghetti twirled on a fork over a white plate, in a red tomato sauce with halved cherry tomatoes and torn basil leaves." width="960" height="640" loading="lazy">
+                <figcaption>Spaghetti al pomodoro — cherry tomatoes, garlic, basil, pecorino. Real photo, generic stock imagery: CC0 “Spaghetti Tomato” by Lisa Fotios, not this restaurant's dish.</figcaption>
+              </figure>
+              <h3 class="panel__title">Primi <span class="panel__sub">the heart of the table</span></h3>
+              <ul class="dishes">
+                <li class="dish">
+                  <div class="dish__text"><h4>Spaghetti al pomodoro</h4><p>Cherry tomatoes, raw garlic, basil and grated pecorino</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€16</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Paccheri al ragù napoletano</h4><p>Pork and beef ragù cooked from morning; nonna stirs, no one else</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€15</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Zuppa di cozze</h4><p>Mussels in tomato and wine broth, charred bread to soak it up</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€14</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Rigatoni alla genovese</h4><p>Onions braised six hours into a dark sweet sugo, pecorino</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€14</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Pasta e patate con provola</h4><p>Pasta, potato and smoked provola melted into one golden pot</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€11</span>
+                </li>
+              </ul>
+            </section>
+
+            <section role="tabpanel" id="panel-secondi" aria-labelledby="tab-secondi" class="panel" hidden>
+              <figure class="panel__feature">
+                <img src="assets/img/dish-secondi.svg" alt="Placeholder illustration of braciole in tomato sugo" width="800" height="800" loading="lazy">
+                <figcaption>Braciole al sugo — pine nuts, raisins, caciocavallo · illustration, not a photograph</figcaption>
+              </figure>
+              <h3 class="panel__title">Secondi <span class="panel__sub">from the sea and the fire</span></h3>
+              <ul class="dishes">
+                <li class="dish">
+                  <div class="dish__text"><h4>Branzino al cartoccio</h4><p>Sea bass baked in paper with lemon, capers and Mediterranean herbs</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€24</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Braciole al sugo</h4><p>Beef rolls stuffed with pine nuts, raisins and caciocavallo in tomato sauce</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€19</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Pollo alla cacciatora</h4><p>"Hunter's chicken" with tomatoes, Gaeta olives and rosemary</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€16</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Frittura napoletana</h4><p>Lightly fried squid, shrimp and tiny fish, lemon only</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€21</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Melanzane alla parmigiana</h4><p>Layered eggplant, tomato, basil and mozzarella, baked black on top</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€13</span>
+                </li>
+              </ul>
+            </section>
+
+            <section role="tabpanel" id="panel-dolci" aria-labelledby="tab-dolci" class="panel" hidden>
+              <figure class="panel__feature">
+                <img src="assets/img/photo-dolci.jpg" alt="A slice of tiramisu on a white plate, dusted with cocoa, with a spoon resting beside it." width="2048" height="1365" loading="lazy">
+                <figcaption>Tiramisù della casa — no cream, plenty of espresso, a dust of cocoa. Real photo, generic stock imagery: CC0 tiramisu photograph, not this restaurant's dessert.</figcaption>
+              </figure>
+              <h3 class="panel__title">Dolci <span class="panel__sub">the civil part of dinner</span></h3>
+              <ul class="dishes">
+                <li class="dish">
+                  <div class="dish__text"><h4>Babà al rum</h4><p>Soaked to perfection; the tray circulates once before anyone starts</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€7</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Delizia al limone</h4><p>Sponge spheres filled with limoncello cream, snowed with sugar</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€8</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Pasticciotto leccese</h4><p>Fragile pastry shell, vanilla custard, warm from the oven</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€6</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Tiramisù della casa</h4><p>Ours is serious: no cream, plenty of espresso, a dust of cocoa</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€7</span>
+                </li>
+                <li class="dish">
+                  <div class="dish__text"><h4>Gelato al pistacchio di Bronte</h4><p>Two scoops of green gold from the volcano's slopes</p></div>
+                  <span class="dish__dots" aria-hidden="true"></span><span class="dish__price">€6</span>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        <div class="picks">
+          <p class="picks__label">Chef's picks</p>
+          <h3 class="picks__heading">Three plates we would send to your table first</h3>
+          <ul class="picks__grid">
+            <li class="pick">
+              <img src="assets/img/photo-primi.jpg" alt="Spaghetti twirled on a fork over a white plate in a tomato sauce with cherry tomatoes and basil." width="960" height="640" loading="lazy">
+              <div class="pick__body">
+                <h4>Spaghetti al pomodoro <span class="pick__price">€16</span></h4>
+                <p>Cherry tomatoes, raw garlic, basil and grated pecorino.</p>
+                <span class="pick__tag">Primi</span>
+              </div>
+            </li>
+            <li class="pick">
+              <img src="assets/img/photo-pasta.jpg" alt="Overhead view of a bowl of fettuccine tossed with spinach in a pale cream sauce." width="960" height="960" loading="lazy">
+              <div class="pick__body">
+                <h4>Fettuccine agli spinaci <span class="pick__price">€14</span></h4>
+                <p>Fettuccine with spinach folded through a cream and parmigiano sauce.</p>
+                <span class="pick__tag">Primi</span>
+              </div>
+            </li>
+            <li class="pick">
+              <img src="assets/img/photo-dolci.jpg" alt="A slice of tiramisu on a white plate, dusted with cocoa, with a spoon beside it." width="2048" height="1365" loading="lazy">
+              <div class="pick__body">
+                <h4>Tiramisù della casa <span class="pick__price">€7</span></h4>
+                <p>No cream, plenty of espresso, a dust of cocoa.</p>
+                <span class="pick__tag">Dolci</span>
+              </div>
+            </li>
+          </ul>
+          <p class="picks__note">The three plates above are real CC0 stock photographs of generic café and pasta imagery, chosen to match each dish's description — they are not photographs of Palazzo's kitchen or of these exact plates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FROM THE KITCHEN ============ -->
+    <section class="kitchen reveal" aria-labelledby="kitchen-heading">
+      <div class="kitchen__grid">
+        <figure class="kitchen__media">
+          <img src="assets/img/market-ingredients.svg" alt="Placeholder illustration of market ingredients — tomatoes, basil, flour, garlic and oil" width="1200" height="800" loading="lazy">
+          <figcaption>Hand-built SVG illustration, not a photograph: no verified market or ingredients photo was available for this slot.</figcaption>
+        </figure>
+        <div class="kitchen__copy">
+          <p class="kicker">Dalla Cucina · From the Kitchen</p>
+          <h2 id="kitchen-heading">A note on what this page really is</h2>
+          <p>The dishes, prices and market still-lifes above are invented sample content. There
+            is no kitchen behind them, no morning run to the mercato, no copper pot on a flame.</p>
+          <p class="kitchen__badge">This is a demo build — pure HTML, CSS and vanilla JavaScript. Where a
+            fitting CC0 stock photograph existed it is used, with its credit below; the antipasti, secondi
+            and market still-life frames are still hand-built SVG illustrations, labelled as such.</p>
+        </div>
+      </div>
+    </section>
+    <section class="story reveal" id="story" data-counter="03" aria-labelledby="story-heading">
+      <div class="wrap">
+        <header class="section-head section-head--light">
+          <p class="kicker">02 — La Nostra Storia</p>
+          <h2 id="story-heading">A trattoria, not a restaurant</h2>
+        </header>
+
+        <blockquote class="pull-quote reveal">
+          <p>“A table is a promise: whoever sits down is family until they leave.”</p>
+          <footer>— attributed to the fictional founder, <cite>Elide Palazzo</cite>, 1962</footer>
+        </blockquote>
+
+        <div class="story__grid">
+          <div class="story__col reveal">
+            <h3>Fourteen tables, one copper pot</h3>
+            <p>The story we invented for this concept goes like this: Elide Palazzo opened with
+              fourteen tables and her mother's copper <em>ruoto</em>, the pot that never leaves the
+              flame. Ragù goes in at dawn and comes out when it is ready, which is never before six.</p>
+            <p>Nothing is rushed and little is written down. The menu changes when the vegetables
+              change, the wine is local because walking far is difficult, and the bread arrives
+              before you ask because that is what arrives first.</p>
+          </div>
+          <div class="story__col reveal">
+            <h3>Why this page exists</h3>
+            <p>Palazzo is not a real place — there is no kitchen, no nonna, no waitlist on Fridays.
+              It is a design exercise: a one-page brand microsite built in plain HTML, CSS and
+              JavaScript to explore warm palettes, kinetic type, and hand-feel interactions
+              without a framework in sight.</p>
+            <p>Every word, dish and price on this page was written as sample content for the
+              concept. If it reads like a real trattoria, the craft did its job.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESERVE ============ -->
+    <section class="reserve reveal" id="reserve" data-counter="04" aria-labelledby="reserve-heading">
+      <div class="reserve__layout">
+        <aside class="reserve__aside">
+          <div class="reserve__aside-media" aria-hidden="true">
+            <img src="assets/img/photo-cafe.jpg" alt="A bright café interior with pink walls, wooden chairs with a round cut-out in each backrest, framed paintings and baking tins on the wall." width="2048" height="1536" loading="lazy">
+            <span class="reserve__aside-scrim"></span>
+            <p class="reserve__aside-caption">A generic CC0 stock café — no table here is reserved, and Palazzo has no windows to reserve one by.</p>
+          </div>
+          <div class="reserve__aside-copy">
+            <p class="kicker">03 — Prenotazioni</p>
+            <h2 id="reserve-heading">Reserve a table</h2>
+            <p class="section-note">A demo form with real validation. Submitting it goes
+              nowhere — nothing is sent, nothing is stored. Palazzo is a fictional restaurant.</p>
+          </div>
+        </aside>
+
+        <div class="reserve__main">
+        <form id="reserveForm" class="reserve-form" novalidate>
+          <div class="field">
+            <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required
+                   aria-describedby="e-name">
+            <p class="field__error" id="e-name" hidden></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-date">Date <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="f-date" name="date" required aria-describedby="e-date">
+              <p class="field__error" id="e-date" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-time">Time <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-time" name="time" required aria-describedby="e-time">
+                <option value="">Choose…</option>
+                <option>18:30</option><option>19:00</option><option>19:30</option>
+                <option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+              </select>
+              <p class="field__error" id="e-time" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-party">Party <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-party" name="party" required aria-describedby="e-party">
+                <option value="">Guests…</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option>
+                <option>5</option><option>6</option><option>7</option><option>8</option>
+                <option value="9+">9 or more</option>
+              </select>
+              <p class="field__error" id="e-party" hidden></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-notes">Notes <span class="field__optional">(optional — allergies, occasions, window seat dreams)</span></label>
+            <textarea id="f-notes" name="notes" rows="3" aria-describedby="e-notes"></textarea>
+            <p class="field__error" id="e-notes" hidden></p>
+          </div>
+
+          <button type="submit" class="btn btn--solid btn--wide">Request the table</button>
+          <p class="form-demo-note">Demo only — this form is validated in your browser and sends no email.</p>
+        </form>
+
+        <div id="confirmation" class="confirmation" role="status" tabindex="-1" hidden>
+          <p class="confirmation__mark" aria-hidden="true">✦</p>
+          <h3>Table requested — grazie, <span id="confName">friend</span>!</h3>
+          <p id="confSummary"></p>
+          <p class="confirmation__disclaimer">
+            This is a concept demo. <strong>No email has been sent</strong>, no reservation
+            exists, and nothing you typed leaves this page. Palazzo is a fictional restaurant.
+          </p>
+          <button type="button" class="btn btn--ghost btn--ghost-dark" id="resetForm">Make another request</button>
+        </div>
+        </div><!-- /reserve__main -->
+      </div><!-- /reserve__layout -->
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__grid">
+      <div>
+        <p class="brand brand--footer"><span class="brand__mark" aria-hidden="true">P</span> Palazzo</p>
+        <p class="footer-blurb">Cucina napoletana — invented with care, built by hand.</p>
+      </div>
+      <nav aria-label="This page">
+        <p class="footer-title">On this page</p>
+        <ul class="footer-links">
+          <li><a href="#room">The room</a></li>
+          <li><a href="#menu">La Cucina</a></li>
+          <li><a href="#story">La Storia</a></li>
+          <li><a href="#reserve">Reserve</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="More of Faraz's work">
+        <p class="footer-title">More demos</p>
+        <ul class="footer-links">
+          <li><a href="../index.html">← Portfolio home</a></li>
+          <li><a href="../focus-flow/index.html">Focus Flow</a></li>
+          <li><a href="../skyline/index.html">Skyline</a></li>
+          <li><a href="../react-demo/index.html">React Demo</a></li>
+        </ul>
+      </nav>
+      <address class="footer-contact">
+        <p>Via Example 12, Napoli (fictional)</p>
+        <p>+39 081 000 0000 (sample number)</p>
+        <p>ciao@palazzo.example</p>
+      </address>
+    </div>
+    <div class="concept-badge">
+      <p>Palazzo is a <strong>fictional demo brand</strong> created by frontend developer Faraz Malang Jan,
+        not a real restaurant. Every dish, price and paragraph here is invented sample content, and the
+        reservation form sends nothing to any server.</p>
+      <p><strong>About the photographs:</strong> the interior and food images on this page are free
+        (CC0) stock photographs of generic cafés and generic pasta dishes. They are not this venue, this
+        food, or this kitchen — Palazzo exists only as a front-end exercise. Frames that are hand-drawn
+        SVG artwork are labelled as illustrations.</p>
+      <p class="photo-credits">Photo credits — CC0 stock: “A cozy cafe interior” by Nilo Velez, WordPress
+        Photos (hero) · “A cozy cafe interior with pink walls” by Dan Knauss, WordPress Photos (The Room,
+        Reserve) · “Spaghetti Tomato” by Lisa Fotios, StockSnap.io (primi, chef's picks) · “Pasta Spinach”
+        by Daria Shevtsova, StockSnap.io (chef's picks) · “A slice of tiramisu on a white plate” by
+        Jackson Monichan, WordPress Photos (dolci, chef's picks).</p>
+      <p class="concept-badge__sig">Concept design project — designed &amp; built by Faraz Malang Jan.</p>
+    </div>
+  </footer>
+
+  <!-- CSS/SVG film grain -->
+  <svg class="grain" aria-hidden="true" focusable="false">
+    <filter id="grainFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grainFilter)"/>
+  </svg>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

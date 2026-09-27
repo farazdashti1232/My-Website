@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Flow — Pomodoro timer &amp; task list</title>
+  <meta name="description" content="A warm, minimal pomodoro focus timer with a built-in task list. Built with vanilla HTML, CSS and JavaScript." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23d97706' stroke-width='12' stroke-dasharray='190 260' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,0.65);color:#fff;text-decoration:none;font:500 13px/1.4 system-ui;backdrop-filter:blur(6px)">&#8592; Portfolio</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ Hero ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-art" src="assets/img/photo-hero.jpg" alt="Overhead view of a white coffee mug on a light desk next to an open paper notebook and a pen." width="960" height="720" fetchpriority="high" />
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="brand">
+        <svg class="brand-mark" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="10"
+                  stroke-dasharray="188 260" stroke-linecap="round" />
+        </svg>
+        <p class="brand-name">Focus<span class="brand-accent">Flow</span></p>
+      </div>
+    </header>
+
+    <div class="hero-body wrap">
+      <p class="hero-eyebrow">A personal project by Faraz Malang Jan</p>
+      <h1 id="hero-title" class="hero-title">Focus<span class="brand-accent">Flow</span></h1>
+      <p class="hero-tagline">A warm, minimal pomodoro timer with a built-in task list &mdash; one ring of time, one task at a time.</p>
+      <p class="hero-note">Hand-built with vanilla HTML, CSS and JavaScript. No framework, no build step, no account: everything you type stays in this browser.</p>
+      <p class="hero-cta">
+        <a class="btn btn-hero" href="#main">Try the timer</a>
+        <a class="hero-link" href="#how">How it works</a>
+      </p>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- ============ The app ============ -->
+    <section class="app-section" aria-labelledby="app-heading">
+      <div class="wrap">
+        <p class="section-kicker">The app</p>
+        <h2 id="app-heading" class="section-title">Everything happens on this page</h2>
+        <p class="section-lede">Pick a mode, set a task as your current focus, and press Start. The ring counts down, a soft chime marks the end of the session, and today&rsquo;s stats update as you go.</p>
+
+        <div class="layout">
+          <!-- ============ Timer panel ============ -->
+          <section class="panel panel-timer" aria-labelledby="timer-heading">
+            <div class="panel-top">
+              <h2 id="timer-heading" class="visually-hidden">Pomodoro timer</h2>
+              <button id="mute-toggle" class="icon-btn" type="button" aria-pressed="false"
+                      aria-label="Sound is on. Click to mute the completion chime." title="Toggle completion sound">
+                <svg class="icon icon-sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                  <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+                </svg>
+                <svg class="icon icon-sound-off" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="16" y1="9" x2="22" y2="15"></line>
+                  <line x1="22" y1="9" x2="16" y2="15"></line>
+                </svg>
+              </button>
+            </div>
+
+            <div class="mode-tabs" role="group" aria-label="Timer mode">
+              <button type="button" class="mode-tab is-active" data-mode="focus" aria-pressed="true">
+                Focus <span class="mode-tab-time">25m</span>
+              </button>
+              <button type="button" class="mode-tab" data-mode="short" aria-pressed="false">
+                Short break <span class="mode-tab-time">5m</span>
+              </button>
+              <button type="button" class="mode-tab" data-mode="long" aria-pressed="false">
+                Long break <span class="mode-tab-time">15m</span>
+              </button>
+            </div>
+
+            <div class="ring-wrap">
+              <svg class="ring" viewBox="0 0 280 280" aria-hidden="true">
+                <circle class="ring-track" cx="140" cy="140" r="124"></circle>
+                <circle class="ring-progress" id="ring-progress" cx="140" cy="140" r="124"></circle>
+              </svg>
+              <div class="ring-center">
+                <p id="time-display" class="time-display" role="timer" aria-live="off"
+                   aria-label="Time remaining in this session">25:00</p>
+                <p id="phase-label" class="phase-label">Time to focus</p>
+              </div>
+            </div>
+
+            <div class="timer-controls">
+              <button id="btn-start" class="btn btn-primary" type="button">Start</button>
+              <button id="btn-reset" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+
+            <p id="working-on" class="working-on" hidden></p>
+
+            <details class="shortcuts">
+              <summary>Keyboard shortcuts</summary>
+              <dl class="shortcuts-list">
+                <div><dt><kbd>Space</kbd></dt><dd>Start / pause</dd></div>
+                <div><dt><kbd>R</kbd></dt><dd>Reset timer</dd></div>
+                <div><dt><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></dt><dd>Switch mode</dd></div>
+              </dl>
+            </details>
+          </section>
+
+          <!-- ============ Tasks panel ============ -->
+          <section class="panel panel-tasks" aria-labelledby="tasks-heading">
+            <h2 id="tasks-heading">Today&rsquo;s tasks</h2>
+
+            <form id="task-form" class="task-form" autocomplete="off">
+              <label class="visually-hidden" for="task-input">New task name</label>
+              <input id="task-input" type="text" maxlength="120" placeholder="What are you working on?" required />
+              <div class="task-form-side">
+                <label class="visually-hidden" for="task-estimate">Estimated pomodoros</label>
+                <input id="task-estimate" type="number" min="1" max="12" value="1" aria-label="Estimated pomodoros" />
+                <button class="btn btn-primary btn-sm" type="submit">Add</button>
+              </div>
+            </form>
+
+            <ul id="task-list" class="task-list" aria-label="Task list"></ul>
+            <p id="task-empty" class="task-empty">No tasks yet. Add one above, then set it as your current focus so completed pomodoros count toward it.</p>
+
+            <div class="stats" role="group" aria-label="Focus statistics for today">
+              <div class="stat">
+                <span class="stat-value" id="stat-sessions">0</span>
+                <span class="stat-label">Sessions today</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-minutes">0</span>
+                <span class="stat-label">Focus minutes today</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-total">0</span>
+                <span class="stat-label">All-time sessions</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ How it works ============ -->
+    <section class="how-section" id="how" aria-labelledby="how-heading">
+      <div class="wrap">
+        <p class="section-kicker">How it works</p>
+        <h2 id="how-heading" class="section-title">Three steps, repeated</h2>
+        <p class="section-lede">The whole loop fits on one screen. Nothing to configure first &mdash; you can start the timer before you have a single task.</p>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step-top">
+              <span class="step-num" aria-hidden="true">01</span>
+              <span class="step-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                </svg>
+              </span>
+            </div>
+            <h3>Write it down</h3>
+            <p>Add the tasks for your day and give each one a rough size in pomodoros &mdash; the estimate is a plan, not a promise.</p>
+          </li>
+          <li class="step">
+            <div class="step-top">
+              <span class="step-num" aria-hidden="true">02</span>
+              <span class="step-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="7 4 20 12 7 20 7 4"></polygon>
+                </svg>
+              </span>
+            </div>
+            <h3>Start the ring</h3>
+            <p>Mark one task as your current focus and press Start (or tap <kbd>Space</kbd>). The ring counts down a 25-minute session against the clock.</p>
+          </li>
+          <li class="step">
+            <div class="step-top">
+              <span class="step-num" aria-hidden="true">03</span>
+              <span class="step-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                  <path d="M3 8h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z"></path>
+                  <line x1="7" y1="2" x2="7" y2="4.5"></line>
+                  <line x1="11" y1="2" x2="11" y2="4.5"></line>
+                </svg>
+              </span>
+            </div>
+            <h3>Take the break it suggests</h3>
+            <p>When a session ends, a soft chime sounds and the timer queues a short break &mdash; or a longer one after every fourth session.</p>
+          </li>
+        </ol>
+
+        <figure class="how-figure">
+          <img src="assets/img/photo-desk.jpg" alt="A small green plant in a glass jar on a white desk next to a closed notebook." width="960" height="640" loading="lazy" />
+          <figcaption>A quiet desk between sessions &mdash; stock photograph, shown for atmosphere only.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ Why pomodoro ============ -->
+    <section class="editorial" aria-labelledby="why-heading">
+      <div class="wrap editorial-grid">
+        <figure class="editorial-figure">
+          <img src="assets/img/photo-notebook.jpg" alt="A person&rsquo;s hands writing in a paper planner at a cafe table, with a croissant and a cup of coffee beside it." width="960" height="640" loading="lazy" />
+          <figcaption>Interlude &mdash; the break is part of the technique, not a pause from it.
+            <span class="photo-note">Photograph: &ldquo;Journal Notepad&rdquo; by Cathryn Lavery, StockSnap.io (CC0) &mdash; a stock image used for atmosphere, not a real user of this demo.</span>
+          </figcaption>
+        </figure>
+        <div class="prose">
+          <p class="section-kicker">Background reading</p>
+          <h2 id="why-heading" class="section-title">Why the pomodoro technique?</h2>
+          <p class="lead">Francesco Cirillo devised the method in the late 1980s, timing his study sessions with a tomato-shaped mechanical kitchen timer. <em>Pomodoro</em> is Italian for tomato, and the name stuck.</p>
+          <p>The technique&rsquo;s convention is a fixed unit of attention: roughly 25 minutes of single-task focus, a short break, and a longer break after about four of those units. It is worth saying plainly &mdash; the 25/5 rhythm is the technique&rsquo;s convention, not a measured, proven productivity result.</p>
+          <p>What the convention does offer is a low-stakes way to start. A quarter of an hour feels small enough to begin now, the timer lets you stop negotiating with yourself mid-task, and the forced breaks make stopping at the end of a session easier than grinding to a halt. Focus Flow follows that same convention, with the numbers left at the defaults so you can hear whether it suits you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Features ============ -->
+    <section class="features" aria-labelledby="features-heading">
+      <div class="wrap">
+        <p class="section-kicker">Under the hood</p>
+        <h2 id="features-heading" class="section-title">What this little app actually does</h2>
+        <p class="section-lede">No dashboards, no streak badges, no invented numbers &mdash; just the mechanics of a pomodoro day, done carefully.</p>
+
+        <ul class="feature-grid">
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9" stroke-dasharray="42 15"></circle>
+                <path d="M12 8v4l3 2"></path>
+              </svg>
+            </span>
+            <h3>Three timed modes</h3>
+            <p>Focus runs 25 minutes, a short break 5 and a long break 15. The progress ring turns green while you are off the clock.</p>
+          </li>
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <polyline points="12 7 12 12 15.5 14"></polyline>
+              </svg>
+            </span>
+            <h3>A drift-free countdown</h3>
+            <p>Each tick measures against the wall-clock time your session ends at, so a sleeping browser tab can&rsquo;t stretch or shorten it.</p>
+          </li>
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                <path d="M3 8h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z"></path>
+              </svg>
+            </span>
+            <h3>Breaks are queued for you</h3>
+            <p>Finish a focus session and the next mode is already selected: a short break, or a long one once four sessions are in.</p>
+          </li>
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            <h3>Tasks that keep count</h3>
+            <p>Completed pomodoros fill in the dotted estimate on your current task, and today&rsquo;s sessions and focus minutes tally themselves below.</p>
+          </li>
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="13" rx="2"></rect>
+                <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14.5h10"></path>
+              </svg>
+            </span>
+            <h3>Keyboard-friendly</h3>
+            <p><kbd>Space</kbd> starts and pauses, <kbd>R</kbd> resets, <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> switch modes &mdash; and a live region keeps screen readers posted.</p>
+          </li>
+          <li class="feature">
+            <span class="feature-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10.5 12 3l9 7.5"></path>
+                <path d="M5 9.5V20h14V9.5"></path>
+                <path d="M10 20v-6h4v6"></path>
+              </svg>
+            </span>
+            <h3>Everything stays local</h3>
+            <p>Tasks, stats and your mute preference persist through <code>localStorage</code>. There is no server and no sign-in; your history lives only in this browser.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-region" class="toast-region" aria-live="assertive" aria-atomic="true"></div>
+  <p id="sr-status" class="visually-hidden" role="status" aria-live="polite"></p>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="More projects by Faraz">
+        <a href="../index.html">&larr; Portfolio home</a>
+        <a href="../skyline/index.html">Skyline &middot; weather dashboard</a>
+        <a href="../palazzo/index.html">Palazzo &middot; trattoria concept</a>
+        <a href="../react-demo/index.html">Splitzy &middot; React demo</a>
+      </nav>
+      <p class="footer-credit">Designed &amp; built by Faraz Malang Jan &mdash; personal demo project.</p>
+      <p class="footer-note">The photographs on this page are CC0 stock images from StockSnap.io, used for atmosphere; they do not depict this app, its users or any client work.</p>
+      <p class="footer-note">Photo credits: &ldquo;Flatlay Coffee&rdquo; &mdash; FOCA Stock, StockSnap.io (CC0) &middot; &ldquo;Journal Notepad&rdquo; &mdash; Cathryn Lavery, StockSnap.io (CC0) &middot; &ldquo;Minimal Office&rdquo; &mdash; Altered Reality, StockSnap.io (CC0)</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

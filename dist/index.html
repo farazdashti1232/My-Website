@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faraz Malang Jan — Frontend Developer</title>
+  <meta name="description" content="Portfolio of Faraz Malang Jan, a frontend developer building fast, hand-crafted, framework-free web experiences.">
+  <meta property="og:title" content="Faraz Malang Jan — Frontend Developer">
+  <meta property="og:description" content="Fast, hand-crafted, framework-free web experiences. Every project live, every repo public.">
+  <meta property="og:image" content="assets/faraz-portrait.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#a3651c">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23a3651c'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='24' fill='%23faf8f4' text-anchor='middle'%3EFM%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Set theme before paint to avoid flash
+    (function () {
+      var saved = localStorage.getItem('fmj-theme');
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#work">Skip to work</a>
+
+  <header class="site-header" id="top">
+    <div class="header-inner wrap">
+      <a href="#top" class="brand" aria-label="Faraz Malang Jan — home">
+        <span class="brand-mark" aria-hidden="true">FMJ</span>
+        <span class="brand-name">Faraz Malang Jan</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul id="nav-list">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#notes">Notes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to light theme" aria-pressed="false">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="#contact" class="btn btn-primary btn-sm">Hire me</a>
+        <button id="nav-toggle" class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Frontend developer</p>
+          <h1 id="hero-title" class="reveal">I build fast, elegant interfaces <em>without the bloat.</em></h1>
+          <p class="lede reveal">Hand-coded HTML, CSS and JavaScript, with React when a project earns it — no dependencies you didn't choose.
+            Every project below is live and its source is public, so you can check the work itself, not just the pitch.</p>
+          <div class="hero-cta reveal">
+            <a href="#work" class="btn btn-primary">See my work</a>
+            <a href="#contact" class="btn btn-ghost">Start a conversation</a>
+          </div>
+          <ul class="tech-strip reveal" aria-label="Core technologies">
+            <li>HTML5</li><li>CSS3</li><li>JavaScript&nbsp;ES6+</li><li>React&nbsp;18</li><li>Responsive</li><li>Accessibility</li><li>SVG&nbsp;animation</li>
+          </ul>
+        </div>
+        <div class="hero-media reveal">
+          <figure class="portrait">
+            <img src="assets/faraz-portrait.jpg" alt="Portrait of Faraz Malang Jan, frontend developer" width="1024" height="1024" fetchpriority="high">
+            <figcaption class="portrait-caption">
+              <span class="portrait-name">Faraz Malang Jan</span>
+              <span class="portrait-role">Frontend developer</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work" class="section wrap">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>One client project and four personal builds. Every demo is live on this site — click through and check the work itself.</p>
+      </div>
+
+      <article class="project-card reveal" id="project-kamash">
+        <div class="project-visual visual-kamash" aria-hidden="true">
+          <span class="visual-word">KAMASH</span>
+          <span class="visual-sub">Eau&nbsp;de&nbsp;Parfum</span>
+          <span class="visual-line"></span>
+        </div>
+        <div class="project-body">
+          <p class="project-type">Client project · Brand &amp; storefront frontend</p>
+          <h3>Kamash Fragrance</h3>
+          <p>A luxury perfume brand needed a premium single-page presence — without the overhead of a full
+            e-commerce backend. I designed and built the complete frontend solo: a shop-like experience with
+            cart, wishlist and quick-view interactions, running as static files on GitHub Pages.</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            <li>HTML5</li><li>CSS custom properties</li><li>Vanilla JS</li><li>Intersection Observer</li><li>GitHub Pages</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary btn-sm" href="https://farazdashti1232.github.io/Kamash_Fragrance/" target="_blank" rel="noopener">Live site ↗</a>
+            <a class="btn btn-ghost btn-sm" href="https://github.com/farazdashti1232/Kamash_Fragrance" target="_blank" rel="noopener">Source ↗</a>
+          </div>
+          <details class="case-study">
+            <summary>Case study</summary>
+            <div class="case-study-body">
+              <h4>Problem</h4>
+              <p>A small fragrance brand wanted a website that felt as considered as the product, on a zero-infrastructure budget: no server, no CMS, no licences.</p>
+              <h4>Approach</h4>
+              <ul>
+                <li>Design system in CSS custom properties: charcoal, beige and metallic gold with a Playfair Display / Montserrat type pairing.</li>
+                <li>Client-side cart, quantity controls and wishlist state, so the static page behaves like a shop.</li>
+                <li>Intersection Observer scroll-reveal animations instead of scroll-event handlers — smooth at 60fps and cheap on battery.</li>
+                <li>Quick-view modals, toast alerts and an inquiry flow, all keyboard- and screen-reader-considered.</li>
+              </ul>
+              <h4>Result</h4>
+              <p>A fast, fully responsive brand site deployed on GitHub Pages — the project that set the standard for everything else on this page.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="project-card reveal" id="project-focusflow">
+        <div class="project-visual visual-focus" aria-hidden="true">
+          <span class="visual-ring"></span>
+          <span class="visual-time">25:00</span>
+        </div>
+        <div class="project-body">
+          <p class="project-type">Personal project · App interactivity demo</p>
+          <h3>Focus Flow</h3>
+          <p>A pomodoro timer and task list built to prove that framework-free JavaScript can still feel like a real
+            application: drift-free timing, persistent state, keyboard shortcuts and live-updating UI — in about a
+            hundred kilobytes.</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            <li>JavaScript ES6+</li><li>SVG progress ring</li><li>localStorage</li><li>WebAudio</li><li>A11y</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary btn-sm" href="focus-flow/index.html" target="_blank" rel="noopener">Live site ↗</a>
+          </div>
+          <details class="case-study">
+            <summary>Case study</summary>
+            <div class="case-study-body">
+              <h4>Problem</h4>
+              <p>Timer apps are a de facto React tutorial — I wanted to show the same product thinking in plain JavaScript, with none of the bundle cost.</p>
+              <h4>Approach</h4>
+              <ul>
+                <li>Timestamp-based countdown instead of counting <code>setInterval</code> ticks, so the timer stays accurate even in a throttled background tab.</li>
+                <li>Task list linked to the timer: estimate pomodoros per task, mark the one you're working on, track sessions per day.</li>
+                <li>State persisted in localStorage behind a single schema-owning module.</li>
+                <li>Keyboard shortcuts, ARIA live regions, reduced-motion support, dark mode — the accessibility list a reviewer actually checks.</li>
+              </ul>
+              <h4>Result</h4>
+              <p>An app-feeling tool with zero dependencies. Open the source and read it: the whole state model is one file.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="project-card reveal" id="project-skyline">
+        <div class="project-visual visual-sky" aria-hidden="true">
+          <div class="mock-weather">
+            <div class="mock-w-head">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffd98a" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="#ffd98a" stroke="none"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+              <div class="mock-w-meta">
+                <span class="mock-w-temp">30°</span>
+                <span class="mock-w-city">Karachi · Partly cloudy</span>
+              </div>
+            </div>
+            <svg class="mock-w-chart" viewBox="0 0 220 54" preserveAspectRatio="none">
+              <path d="M0 44 C20 40 30 24 48 26 S80 40 98 34 120 12 142 16 170 34 190 28 214 18 220 20 V54 H0 Z" fill="rgba(140,190,255,0.18)"/>
+              <path d="M0 44 C20 40 30 24 48 26 S80 40 98 34 120 12 142 16 170 34 190 28 214 18 220 20" fill="none" stroke="#8fc1ff" stroke-width="2.2"/>
+              <g fill="rgba(120,170,230,0.35)"><rect x="26" y="46" width="5" height="8" rx="1"/><rect x="86" y="48" width="5" height="6" rx="1"/><rect x="156" y="45" width="5" height="9" rx="1"/><rect x="200" y="49" width="5" height="5" rx="1"/></g>
+            </svg>
+            <div class="mock-w-days"><span>Mon 31°</span><span>Tue 30°</span><span>Wed 31°</span><span>Thu 31°</span></div>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-type">Personal project · API integration demo</p>
+          <h3>Skyline</h3>
+          <p>A live weather dashboard that pulls real forecast data from the Open-Meteo API — with the unglamorous
+            parts done properly: cancelled stale requests, retryable errors, loading skeletons and geolocation
+            permission handled with grace.</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            <li>Fetch + AbortController</li><li>Open-Meteo API</li><li>Hand-drawn SVG charts</li><li>Geolocation</li><li>Debounced search</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary btn-sm" href="skyline/index.html" target="_blank" rel="noopener">Live site ↗</a>
+          </div>
+          <details class="case-study">
+            <summary>Case study</summary>
+            <div class="case-study-body">
+              <h4>Problem</h4>
+              <p>Most weather demos assume the API always succeeds. I wanted to showcase the failure paths a real product lives or dies by.</p>
+              <h4>Approach</h4>
+              <ul>
+                <li>Debounced city search with an arrow-key-navigable suggestion list on top of Open-Meteo's free, key-less geocoding.</li>
+                <li><code>AbortController</code> cancels in-flight requests when a newer search starts — no race conditions on screen.</li>
+                <li>The 24-hour temperature chart and all weather icons are hand-authored SVG; no charting library was harmed.</li>
+                <li>Loading skeletons, error states with retry, "city not found", denied-location — every branch has an honest UI.</li>
+              </ul>
+              <h4>Result</h4>
+              <p>A dashboard where every number on screen came from a live API call, and every way it can break has a considered answer.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="project-card reveal" id="project-palazzo">
+        <div class="project-visual visual-palazzo" aria-hidden="true">
+          <div class="mock-menu">
+            <p class="mock-menu-brand">Palazzo</p>
+            <p class="mock-menu-sub">trattoria napoletana</p>
+            <ul class="mock-menu-list">
+              <li><span>Spaghetti Vongole</span><em>14</em></li>
+              <li><span>Pizza Ragù</span><em>12</em></li>
+              <li><span>Tiramisù della Nonna</span><em>8</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-type">Personal project · Brand range study (fictional)</p>
+          <h3>Palazzo</h3>
+          <p>A microsite for a fictional Neapolitan trattoria, built to show design range: the same static-site
+            craft as Kamash — but an entirely different visual language, built without a single external image.</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            <li>CSS gradients &amp; textures</li><li>Kinetic typography</li><li>Accessible tabs</li><li>Form validation</li><li>Scroll reveal</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary btn-sm" href="palazzo/index.html" target="_blank" rel="noopener">Live site ↗</a>
+          </div>
+          <details class="case-study">
+            <summary>Case study</summary>
+            <div class="case-study-body">
+              <h4>Problem</h4>
+              <p>One premium brand site could be a lucky fit. Could the same developer build a completely different mood from scratch? Palazzo answers that — and being fictional, it also demonstrates honesty: the site itself states the brand isn't real.</p>
+              <h4>Approach</h4>
+              <ul>
+                <li>Warm olive / terracotta / cream palette with a display-serif-led system — deliberate contrast to Kamash's dark gold.</li>
+                <li>All atmosphere created in CSS and inline SVG: no stock photography anywhere.</li>
+                <li>Menu tabs implemented as a real ARIA tab pattern with keyboard navigation; reservation form with genuine validation and an honest "demo only" confirmation.</li>
+              </ul>
+              <h4>Result</h4>
+              <p>Proof of range: two brand worlds, one developer, zero frameworks.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+      <article class="project-card reveal" id="project-splitzy">
+        <div class="project-visual visual-splitzy" aria-hidden="true">
+          <div class="mock-splitzy">
+            <p class="mock-sp-brand">Splitzy</p>
+            <ul class="mock-sp-bal">
+              <li><span>Ali</span><em class="pos">+₨ 450</em></li>
+              <li><span>Sara</span><em class="neg">−₨ 200</em></li>
+              <li><span>Billal</span><em class="neg">−₨ 250</em></li>
+            </ul>
+            <p class="mock-sp-settle">Sara pays Ali ₨ 200 · Billal pays Ali ₨ 250</p>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-type">Personal project · React framework demo</p>
+          <h3>Splitzy</h3>
+          <p>A bill-splitting app built in React to show framework thinking, not just framework syntax:
+            derived state through <code>useMemo</code>, a custom <code>useLocalStorage</code> hook, context
+            instead of prop drilling — and a greedy "settle up" algorithm that suggests the fewest transfers
+            to balance the group.</p>
+          <ul class="tag-list" aria-label="Technologies used">
+            <li>React 18</li><li>Hooks</li><li>Context API</li><li>useMemo</li><li>Custom hooks</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary btn-sm" href="react-demo/index.html" target="_blank" rel="noopener">Live demo ↗</a>
+          </div>
+          <details class="case-study">
+            <summary>Case study</summary>
+            <div class="case-study-body">
+              <h4>Problem</h4>
+              <p>My public work so far is framework-free. This project answers the obvious recruiter question — can the same developer work in React, idiomatically?</p>
+              <h4>Approach</h4>
+              <ul>
+                <li>Component tree (PersonManager, ExpenseForm, BalancePanel, SettleSuggestions) with state kept as close to the data as possible.</li>
+                <li>Balances are never stored — they're derived with <code>useMemo</code>, so the UI can't drift from the data.</li>
+                <li>Custom <code>useLocalStorage</code> hook persists everything; Context replaces prop drilling two levels deep.</li>
+                <li>"Settle up" runs a greedy min-transfer algorithm over the balance map — the kind of small real algorithm frameworks don't give you.</li>
+                <li>Honest trade-off: this demo ships React via CDN with in-browser JSX compilation — zero build tooling, at the cost of a few hundred KB. A production build would pre-compile with Vite.</li>
+              </ul>
+              <h4>Result</h4>
+              <p>A working product feature — split a dinner bill and see who owes whom, live.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section section-alt">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>About</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-prose reveal">
+            <p class="about-id">
+              <img class="about-avatar" src="assets/faraz-portrait.jpg" alt="" width="1024" height="1024" loading="lazy">
+              <span><strong>Faraz Malang Jan</strong><br>
+              <span class="muted-note">Frontend developer — hand-crafted, framework-free interfaces</span></span>
+            </p>
+            <p>I'm Faraz Malang Jan, a frontend developer who specializes in <strong>hand-crafted, framework-free
+              web experiences</strong>. My focus is the part users actually touch: interfaces that load fast,
+              respond honestly, and feel considered down to the last transition.</p>
+            <p>My route to this page is public. The Kamash Fragrance site started as real client work — a brief,
+              a build, a launch — and the projects after it are self-assigned challenges that push each layer of
+              the same stack harder: state, data, motion, brand.</p>
+            <!-- EDIT-ME: replace with your real background once you give me the facts
+                 (education, years coding, freelance history, location). Everything here
+                 is deliberately claim-free until then. -->
+            <p class="muted-note">What I optimize for: performance budgets you can measure, accessibility that
+              survives a keyboard, and code a teammate could read six months from now.</p>
+          </div>
+          <div class="skills-panel reveal">
+            <h3>Skills, rated honestly</h3>
+            <ul class="skills-list">
+              <li><span class="skill-level level-expert">Expert</span> HTML5, CSS3 (custom properties, Grid, Flexbox), responsive design</li>
+              <li><span class="skill-level level-expert">Expert</span> JavaScript ES6+ — DOM, fetch, state, storage, animation</li>
+              <li><span class="skill-level level-proficient">Proficient</span> Accessibility, performance discipline, SVG / CSS visual craft</li>
+              <li><span class="skill-level level-familiar">Familiar</span> React 18 — hooks, context, component design (see Splitzy in Work)</li>
+              <!-- EDIT-ME: add or downgrade lines to match reality — this ladder is here
+                   specifically so the list can stay truthful as you grow. -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section id="testimonials" class="section wrap">
+      <div class="section-head">
+        <h2>What people I've worked with say</h2>
+        <p>Real quotes, real names — collected, not invented. This section stays honest by staying empty until the first quote arrives.</p>
+      </div>
+      <!-- EDIT-ME: replace each placeholder card with a direct quote plus the person's
+           name, role and their permission to publish it. See README.md for a copy-paste
+           message you can send to past clients to request one. -->
+      <div class="testimonial-grid">
+        <figure class="testimonial testimonial-empty">
+          <blockquote><p>Your first real client quote goes here.</p></blockquote>
+          <figcaption>— awaiting: name, role, company</figcaption>
+        </figure>
+        <figure class="testimonial testimonial-empty">
+          <blockquote><p>A colleague's words on working with you.</p></blockquote>
+          <figcaption>— awaiting: name, role, company</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ NOTES / BLOG ============ -->
+    <section id="notes" class="section section-alt">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Notes</h2>
+          <p>Short writing about decisions behind the work — opinions marked as opinions, facts as facts.</p>
+        </div>
+        <div class="notes-grid">
+          <article class="note-card">
+            <p class="note-date"><time datetime="2026-09">September 2026</time></p>
+            <h3><a href="#why-react">Why I added React to a framework-free portfolio</a></h3>
+            <p>A build note on the decision behind Splitzy: when "the platform is enough" stops being the honest
+              answer, and what a framework actually bought this developer.</p>
+            <a class="note-more" href="#why-react">Read →</a>
+          </article>
+          <article class="note-card note-draft">
+            <p class="note-date">Draft in progress</p>
+            <h3>Drift-free timers in plain JavaScript</h3>
+            <p class="muted-note">Coming when it's actually written. This section grows only with real posts.</p>
+          </article>
+          <article class="note-card note-draft">
+            <p class="note-date">Draft in progress</p>
+            <h3>What a static site can honestly do about "e-commerce"</h3>
+            <p class="muted-note">A write-up of the Kamash cart model — limits included.</p>
+          </article>
+        </div>
+
+        <article class="note-full" id="why-react">
+          <h3>Why I added React to a framework-free portfolio</h3>
+          <p class="muted-note">Opinion, stated as such: this is one developer's judgment about one project, not advice.</p>
+          <p>This page used to carry a post titled "Why this portfolio has no framework." It's gone, and the reason is
+            <a href="#project-splitzy">Splitzy</a>. The old argument — ship no dependencies you didn't choose — was
+            about a page that renders four paragraphs and a grid. It stopped being true the moment I built something
+            with real state: expenses that mutate, per-person balances that recompute from that mutation,
+            localStorage that survives reloads, and a settle-up list that has to stay consistent across all three.</p>
+          <p>In plain JS that becomes a hand-written event bus and a render function I would have to keep in sync by
+            discipline. With React it is <code>useState</code>, a <code>useLocalStorage</code> hook, and derived values
+            that cannot drift, because recomputing them is the model rather than something I remember to call. Two
+            <code>useContext</code> layers replaced prop drilling through four components. That is the honest trade:
+            the framework bought correctness I would otherwise have had to test for.</p>
+          <p>What it cost, also stated honestly: Splitzy loads React 18 from a CDN with Babel in the browser, so
+            there is no build step, no bundler and no code splitting — fine for a demo, not what I'd ship to a client.
+            The portfolio page itself still has no framework, because the reason it had none still holds. A tool earns
+            its place per project, not per resume keyword.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section wrap">
+      <div class="contact-grid">
+        <div class="contact-copy reveal">
+          <h2>Let's build something</h2>
+          <p>Have a project in mind? Even a rough idea is enough to start. I read every message personally.</p>
+          <p class="muted-note">Prefer direct? <a href="mailto:hello@example.com">hello@example.com</a> ·
+            <a href="https://wa.me/923192078132" target="_blank" rel="noopener">WhatsApp</a> ·
+            <a href="https://github.com/farazdashti1232" target="_blank" rel="noopener">GitHub</a></p>
+          <!-- EDIT-ME: replace hello@example.com with your real address in this section
+               AND in the FORM_TO constant in js/main.js before publishing. -->
+        </div>
+        <form id="contact-form" class="contact-form reveal" novalidate>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-err">
+            <p class="field-err" id="cf-name-err" hidden>Please tell me your name.</p>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-err">
+            <p class="field-err" id="cf-email-err" hidden>A valid email lets me reply.</p>
+          </div>
+          <div class="field">
+            <label for="cf-topic">What do you need?</label>
+            <select id="cf-topic" name="topic">
+              <option>A new website or landing page</option>
+              <option>Frontend work on an existing product</option>
+              <option>A full-time or contract role</option>
+              <option>Collaboration between developers</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required aria-describedby="cf-message-err"></textarea>
+            <p class="field-err" id="cf-message-err" hidden>A sentence or two is plenty.</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-note">This opens your own email app with the message pre-filled — no server, no tracking, nothing stored on this page.</p>
+          <p id="cf-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year">2026</span> Faraz Malang Jan — hand-built with HTML, CSS and JavaScript. No template, no page builder.</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#notes">Notes</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#top">Back to top ↑</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/923192078132?text=Hi%20Faraz%2C%20I%20found%20your%20portfolio%20and%20want%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Message Faraz on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+    <span class="whatsapp-label">Chat on WhatsApp</span>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

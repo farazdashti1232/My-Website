@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Candlelit Neapolitan dining room, placeholder artwork">
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c3823"/>
+      <stop offset="0.55" stop-color="#20291a"/>
+      <stop offset="1" stop-color="#171d12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="34%" r="60%">
+      <stop offset="0" stop-color="#e2946f" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#c65d33" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#171d12" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171d12" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0d1009" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="bulb" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f7e6b8"/>
+      <stop offset="0.5" stop-color="#c9a24b"/>
+      <stop offset="1" stop-color="#c9a24b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#room)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+
+  <!-- back arches -->
+  <g fill="#171d12" opacity="0.55">
+    <path d="M120 620V380a120 120 0 0 1 240 0v240z"/>
+    <path d="M680 620V360a120 120 0 0 1 240 0v260z"/>
+    <path d="M1240 620V380a120 120 0 0 1 240 0v240z"/>
+  </g>
+  <g fill="#c9a24b" opacity="0.10">
+    <path d="M150 610V390a90 90 0 0 1 180 0v220z"/>
+    <path d="M710 610V372a90 90 0 0 1 180 0v238z"/>
+    <path d="M1270 610V390a90 90 0 0 1 180 0v220z"/>
+  </g>
+
+  <!-- pendant lamps -->
+  <g stroke="#b9a075" stroke-width="2" opacity="0.8">
+    <line x1="360" y1="0" x2="360" y2="150"/>
+    <line x1="800" y1="0" x2="800" y2="120"/>
+    <line x1="1240" y1="0" x2="1240" y2="150"/>
+  </g>
+  <g>
+    <ellipse cx="360" cy="168" rx="40" ry="26" fill="#3d4d31"/><circle cx="360" cy="182" r="70" fill="url(#bulb)" filter="url(#soft)"/>
+    <ellipse cx="800" cy="138" rx="46" ry="30" fill="#3d4d31"/><circle cx="800" cy="156" r="84" fill="url(#bulb)" filter="url(#soft)"/>
+    <ellipse cx="1240" cy="168" rx="40" ry="26" fill="#3d4d31"/><circle cx="1240" cy="182" r="70" fill="url(#bulb)" filter="url(#soft)"/>
+  </g>
+
+  <!-- tables with candles -->
+  <g fill="#0f130b" opacity="0.9">
+    <ellipse cx="320" cy="720" rx="150" ry="34"/>
+    <ellipse cx="800" cy="760" rx="180" ry="40"/>
+    <ellipse cx="1290" cy="720" rx="150" ry="34"/>
+  </g>
+  <g>
+    <g transform="translate(320 700)"><rect x="-3" y="-34" width="6" height="34" fill="#efe5cf"/><circle cx="0" cy="-40" r="16" fill="url(#bulb)"/></g>
+    <g transform="translate(760 736)"><rect x="-3" y="-36" width="6" height="36" fill="#efe5cf"/><circle cx="0" cy="-42" r="18" fill="url(#bulb)"/></g>
+    <g transform="translate(850 740)"><rect x="-3" y="-30" width="6" height="30" fill="#efe5cf"/><circle cx="0" cy="-36" r="15" fill="url(#bulb)"/></g>
+    <g transform="translate(1290 700)"><rect x="-3" y="-34" width="6" height="34" fill="#efe5cf"/><circle cx="0" cy="-40" r="16" fill="url(#bulb)"/></g>
+  </g>
+
+  <!-- bokeh -->
+  <g fill="#c9a24b">
+    <circle cx="180" cy="250" r="6" opacity="0.5"/><circle cx="560" cy="210" r="9" opacity="0.4"/>
+    <circle cx="1020" cy="230" r="7" opacity="0.45"/><circle cx="1420" cy="280" r="10" opacity="0.4"/>
+    <circle cx="700" cy="300" r="5" opacity="0.5"/><circle cx="1180" cy="330" r="6" opacity="0.4"/>
+  </g>
+
+  <rect width="1600" height="1000" fill="url(#floor)"/>
+  <rect width="1600" height="1000" fill="#0d1009" opacity="0.28"/>
+</svg>

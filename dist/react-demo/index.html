@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Splitzy — split bills fairly (React demo)</title>
+  <meta name="description" content="Splitzy: a bill-splitting demo built with React 18 (CDN, no build step). Hooks, context, memoized balances and minimal settle-up transfers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 6v20M8 12l6 4-6 4M24 12l-6 4 6 4' stroke='%23ecfdf5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- React 18 UMD (production) + Babel standalone: JSX compiles in the browser, no build step -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,0.65);color:#fff;text-decoration:none;font:500 13px/1.4 system-ui;backdrop-filter:blur(6px)">&#8592; Portfolio</a>
+
+  <!-- ============================================================
+       Hero (static, outside #root — the React app mounts below)
+       App artwork is hand-drawn inline SVG; the one photograph is
+       a CC0 stock image (see its caption and the footer credits).
+       ============================================================ -->
+  <header class="site-hero">
+    <div class="site-hero__inner">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">
+          <svg width="14" height="14" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 6v20M8 12l6 4-6 4M24 12l-6 4 6 4" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Personal React 18 project · lives in your browser
+        </p>
+        <h1 class="hero__title">Splitzy.<br />Split bills.<br /><em>Stay&nbsp;friends.</em></h1>
+        <p class="hero__lede">Add the people, log who paid what, and get a short list of who owes whom — no spreadsheets, no awkward dinner-table maths.</p>
+        <div class="hero__actions">
+          <a class="hero__cta" href="#try-it">Try the live demo</a>
+          <a class="hero__cta--ghost" href="#how-it-works">See how it works</a>
+        </div>
+        <ul class="hero__meta">
+          <li><i aria-hidden="true"></i>React 18 hooks &amp; context</li>
+          <li><i aria-hidden="true"></i>localStorage — nothing leaves this page</li>
+          <li><i aria-hidden="true"></i>Zero build step</li>
+        </ul>
+      </div>
+      <div class="hero__art">
+        <figure class="hero__photo-frame">
+          <img class="hero__photo" src="assets/img/photo-cafe-table.jpg" width="1775" height="2048" fetchpriority="high" decoding="async" alt="A cafe table seen from above: two iced coffees and two small desserts on a wooden tray, with napkins and a phone at the side of the table." />
+          <svg class="hero__art--receipt" width="290" height="352" viewBox="0 0 290 352" fill="none" role="img" aria-hidden="true">
+            <path d="M28 18h234v300l-19.5 16-19.5-16-19.5 16-19.5-16-19.5 16-19.5-16-19.5 16-19.5-16-19.5 16-19.5-16V18z" fill="#ffffff" stroke="#99f6e4" stroke-width="1.5"/>
+            <rect x="52" y="44" width="120" height="10" rx="5" fill="#ccfbf1"/>
+            <rect x="52" y="64" width="72" height="10" rx="5" fill="#e2eae6"/>
+            <line x1="44" y1="94" x2="246" y2="94" stroke="#e2eae6" stroke-width="2" stroke-dasharray="4 5"/>
+            <circle cx="62" cy="122" r="13" fill="#dcfce7"/><path d="M57 122l3.6 3.6L68 118" stroke="#166534" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="84" y="116" width="100" height="11" rx="5.5" fill="#e7f4f1"/>
+            <rect x="196" y="116" width="38" height="11" rx="5.5" fill="#99f6e4"/>
+            <circle cx="62" cy="156" r="13" fill="#dcfce7"/><path d="M57 156l3.6 3.6L68 152" stroke="#166534" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="84" y="150" width="84" height="11" rx="5.5" fill="#e7f4f1"/>
+            <rect x="196" y="150" width="38" height="11" rx="5.5" fill="#99f6e4"/>
+            <circle cx="62" cy="190" r="13" fill="#fee2e2"/><path d="M62 184v12M56 190h12" stroke="#991b1b" stroke-width="2.4" stroke-linecap="round" transform="rotate(45 62 190)"/>
+            <rect x="84" y="184" width="92" height="11" rx="5.5" fill="#e7f4f1"/>
+            <rect x="196" y="184" width="38" height="11" rx="5.5" fill="#99f6e4"/>
+            <line x1="44" y1="218" x2="246" y2="218" stroke="#e2eae6" stroke-width="2" stroke-dasharray="4 5"/>
+            <rect x="52" y="238" width="86" height="12" rx="6" fill="#134e4a"/>
+            <rect x="176" y="238" width="58" height="12" rx="6" fill="#0f766e"/>
+            <path d="M64 282c34-18 62 14 96-4" stroke="#0f766e" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="1 7"/>
+            <path d="M150 274l12 4-8 9" stroke="#0f766e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <figcaption class="hero__photo-caption">
+            Stock photo: &ldquo;A cozy cafe table with two tiramisu cups&rdquo; by Roman Khadka, WordPress Photos (CC0). Used because bills get split at tables like this one &mdash; it is not a screenshot, and Splitzy is a personal demo, not client work.
+          </figcaption>
+        </figure>
+        <span class="hero__art--chip hero__chip-1">
+          <span class="avatar" style="background:#fee2e2;color:#991b1b">C</span>
+          <span aria-hidden="true" style="color:#0f766e;font-weight:800">&#8594;</span>
+          <span class="avatar" style="background:#dcfce7;color:#166534">B</span>
+          <span>10.33</span>
+        </span>
+        <span class="hero__art--chip hero__chip-2">
+          <span class="avatar" style="background:#e7f4f1;color:#115e59">S</span>
+          All settled &#10003;
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       The live app (demo section) — React mounts into #root below.
+       #root, its boot child, #boot-error and the scripts are the
+       original mount path, unchanged apart from position on page.
+       ============================================================ -->
+  <main>
+    <section class="site-section" id="try-it" aria-labelledby="try-title">
+      <div class="site-section__inner">
+        <p class="kicker">The app itself</p>
+        <h2 class="section-title" id="try-title">Try it right here</h2>
+        <p class="demo-caption">
+          <span class="tag">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.4" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.4v5l3.2 1.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Runs in your browser
+          </span>
+          Everything you type is saved to <strong>localStorage in this browser only</strong> — there is no backend, no accounts, nothing to sync. Want instant context? Hit <strong>&ldquo;Reset demo&rdquo;</strong> in the app header and a sample group of three people and three expenses loads with one click.
+        </p>
+        <div class="app-frame">
+          <div id="root">
+            <div class="boot" role="status">Loading Splitzy…</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         How it works
+         ============================================================ -->
+    <section class="site-section site-section--alt" id="how-it-works" aria-labelledby="how-title">
+      <div class="site-section__inner">
+        <p class="kicker">How it works</p>
+        <h2 class="section-title" id="how-title">Three steps, one honest number</h2>
+        <p class="section-lede">Splitzy does one job: keep a running ledger of a shared group and say, at any moment, exactly who owes whom how much to make it even. It walks in three moves.</p>
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <span class="step__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="8" r="3.4"/><path d="M3.4 19c.6-3.1 2.9-4.8 5.6-4.8s5 1.7 5.6 4.8"/><path d="M16.5 6.5l3 0M18 5l0 3"/><circle cx="17.2" cy="12.5" r="2.6"/><path d="M15.6 17.2c1-.7 3.4-.5 4.6 1.3"/>
+              </svg>
+            </span>
+            <h3>Add the people</h3>
+            <p>Name everyone in the group — roommates, trip mates, whoever was at the table. Remove someone later and Splitzy cleans up their rows so the maths never lies.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <span class="step__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 3h12v16l-2.4 2-2.4-2-2.4 2-2.4-2L6 19V3z"/><path d="M9.5 8h5M9.5 12h5"/><path d="M9 16h3"/>
+              </svg>
+            </span>
+            <h3>Log who paid what</h3>
+            <p>One expense at a time: who fronted the money, the amount, and who shares it. Amounts are unit-free on purpose — rupees, dollars or shells, the split is the same.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <span class="step__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="7" r="2.5"/><circle cx="18.5" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.6 8.6l2.6 7M16.4 8.6l-2.6 7"/><path d="M8 7h8"/>
+              </svg>
+            </span>
+            <h3>Read the settle-up list</h3>
+            <p>Balances appear live, and the settle-up panel proposes a short list of payments — &ldquo;Chen pays Ana 9.83&rdquo; — that squares everyone with as little moving money as the method can manage.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         The maths
+         ============================================================ -->
+    <section class="site-section" id="the-maths" aria-labelledby="maths-title">
+      <div class="site-section__inner">
+        <p class="kicker">The maths behind it</p>
+        <h2 class="section-title" id="maths-title">Two pass-offs over an even split</h2>
+        <div class="maths-grid">
+          <div class="prose">
+            <h3>Step one: a net balance per person</h3>
+            <p>For every expense, Splitzy divides the amount equally among the people you ticked, then walks the whole list and keeps one number per person: <strong>everything they paid, minus everything they owe</strong>. Positive means the group owes them; negative means they owe the group. By construction these balances sum to zero — every rupee paid is a rupee someone owes. In code this is <code>computeBalances()</code> in <code>js/app.jsx</code>, re-derived from scratch on every change and memoized with <code>useMemo</code>, so there is no stale total to drift.</p>
+            <h3>Step two: a greedy settle-up suggestion</h3>
+            <p>The settle list is the classic greedy pairing: sort the people who are owed from highest down, the people who owe from highest down, and let the biggest debtor pay the biggest creditor as much as they can. Each payment zeroes out at least one person, so the list never needs more transfers than there are people with an open balance minus one. That is <code>computeTransfers()</code>.</p>
+            <div class="callout">
+              <strong>An honest caveat.</strong> &ldquo;The fewest possible payments&rdquo; is a harder problem than it looks, and greedy pairing is a heuristic, not a proof: it gives a short list, not always the provably shortest one, and a minimum-transfer set isn&rsquo;t unique anyway — different orderings can settle the same group in the same number of payments. Splitzy&rsquo;s job is to suggest a small, obvious list to act on — not to claim it is the only correct answer. Half-cent noise is handled with an epsilon (<code>0.005</code>), and displayed figures are rounded to two decimals, so a settled group may show a cent of rounding dust.
+            </div>
+          </div>
+          <figure class="maths-card">
+            <h3>The demo group, worked through</h3>
+            <svg width="100%" viewBox="0 0 300 210" fill="none" role="img" aria-label="Diagram: Ana is owed 9.83, Bilal 10.33, Chen owes 20.17; Chen pays Bilal 10.33 and Chen pays Ana 9.83.">
+              <circle cx="60" cy="42" r="20" fill="#dcfce7"/><text x="60" y="47" text-anchor="middle" font-size="14" font-weight="700" fill="#166534" font-family="Inter, sans-serif">A</text>
+              <text x="60" y="76" text-anchor="middle" font-size="11" fill="#134e4a" font-family="Inter, sans-serif">Ana</text>
+              <text x="60" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#166534" font-family="Inter, sans-serif">+9.83</text>
+              <circle cx="240" cy="42" r="20" fill="#dcfce7"/><text x="240" y="47" text-anchor="middle" font-size="14" font-weight="700" fill="#166534" font-family="Inter, sans-serif">B</text>
+              <text x="240" y="76" text-anchor="middle" font-size="11" fill="#134e4a" font-family="Inter, sans-serif">Bilal</text>
+              <text x="240" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#166534" font-family="Inter, sans-serif">+10.33</text>
+              <circle cx="150" cy="168" r="20" fill="#fee2e2"/><text x="150" y="173" text-anchor="middle" font-size="14" font-weight="700" fill="#991b1b" font-family="Inter, sans-serif">C</text>
+              <text x="150" y="199" text-anchor="middle" font-size="11" fill="#134e4a" font-family="Inter, sans-serif">Chen · −20.17</text>
+              <path d="M134 152C96 128 66 108 58 68" stroke="#0f766e" stroke-width="2" stroke-dasharray="1 6" stroke-linecap="round" fill="none"/>
+              <path d="M54 76l4-9 7 6" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M166 152c38-24 68-44 76-84" stroke="#0f766e" stroke-width="2" stroke-dasharray="1 6" stroke-linecap="round" fill="none"/>
+              <path d="M246 72l-4-9-7 6" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <text x="72" y="126" font-size="10.5" font-weight="700" fill="#115e59" font-family="Inter, sans-serif">9.83</text>
+              <text x="216" y="126" font-size="10.5" font-weight="700" fill="#115e59" font-family="Inter, sans-serif">10.33</text>
+            </svg>
+            <figcaption>Load the demo group in the app above and the Settle-up panel shows exactly this: two payments, nobody does more maths than they have to.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Why React, and what it cost
+         ============================================================ -->
+    <section class="site-section site-section--alt editorial" id="why-react" aria-labelledby="why-title">
+      <div class="why-react-shell">
+        <figure class="why-react-media">
+          <div class="why-react-media__frame">
+            <img src="assets/img/photo-cafe-table.jpg" width="1775" height="2048" loading="lazy" decoding="async" alt="" />
+          </div>
+          <figcaption>The same cafe table from the hero &mdash; a CC0 stock photograph (&ldquo;A cozy cafe table with two tiramisu cups&rdquo; by Roman Khadka, WordPress Photos), atmosphere only: not a Splitzy user, not a real order, not a screenshot.</figcaption>
+        </figure>
+        <div class="site-section__inner editorial__inner">
+        <p class="kicker">Why React, and what it cost</p>
+        <h2 class="section-title" id="why-title">A demo&rsquo;s trade-offs, written down</h2>
+        <div class="prose">
+          <p>I reached for React on Splitzy because the app is almost entirely derived state: two lists in, balances and a settle plan out. Hooks, context and <code>useMemo</code> are exactly the tools for that shape — no prop-drilling through the panels, no hand-written re-render logic, and the money maths stays in plain, testable functions outside the component tree. The app demonstrates all of it deliberately.</p>
+          <p>What it costs, stated honestly: this page loads React 18 from a CDN and compiles <code>js/app.jsx</code> in the browser with Babel standalone. That means no build step, no bundler, no minification and no code splitting — a few hundred extra KB of tooling on every visit and JSX compiled at runtime. Fine for a demo you poke at for five minutes. Not what I&rsquo;d ship to a client: there, the same code goes through Vite, gets pre-compiled, hashed and split like everyone expects.</p>
+          <p>The rest of the boundaries are equally deliberate:</p>
+          <ul class="tradeoff-list">
+            <li><i aria-hidden="true"></i><span>No backend by design. Your group lives in <code>localStorage</code> in your own browser — nothing is uploaded, nothing syncs between devices, and clearing site data clears the ledger.</span></li>
+            <li><i aria-hidden="true"></i><span>Currency amounts are unit-free numbers. No exchange rates, no symbol guessing: a demo of the maths, not of i18n.</span></li>
+            <li><i aria-hidden="true"></i><span>Equal splits only. Percentage or share-weighted splitting is the obvious next feature; shipping without it is a scope choice, not an oversight.</span></li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       Site footer
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__credit">Splitzy — built by Faraz Malang Jan</p>
+      <nav class="site-footer__links" aria-label="More from this portfolio">
+        <a href="../index.html">&larr; Portfolio home</a>
+        <a href="../focus-flow/index.html">Focus Flow — productivity timer</a>
+        <a href="../skyline/index.html">Skyline — city-builder sim</a>
+        <a href="../palazzo/index.html">Palazzo — real-estate demo</a>
+      </nav>
+      <p class="site-footer__note">
+        A personal demo project, not client work. React 18 via CDN with in-browser Babel &mdash; no build step. Runs entirely on the page: your data never leaves this browser. The app artwork is hand-drawn inline SVG and CSS gradients; the single photograph, used twice on this page, is a CC0 stock image for atmosphere &mdash; it shows no real Splitzy customer and is not a screenshot.
+      </p>
+      <p class="site-footer__photos">Photo credits: &ldquo;A cozy cafe table with two tiramisu cups&rdquo; &mdash; Roman Khadka, WordPress Photos (CC0).</p>
+    </div>
+  </footer>
+
+  <div id="boot-error" class="boot-error" role="alert" hidden></div>
+
+  <script>
+    /* Graceful boot diagnostics: React UMD/Babel need https CDNs, and Babel's
+       in-browser loader fetches js/app.jsx via XHR (blocked on file://). */
+    (function () {
+      var show = function (html) {
+        var el = document.getElementById("boot-error");
+        if (el && el.getAttribute("hidden") !== null) {
+          el.removeAttribute("hidden");
+          el.innerHTML = html;
+        }
+      };
+      window.addEventListener("error", function (e) {
+        var t = e.target;
+        if (t && (t.tagName === "SCRIPT" || t.tagName === "LINK") && t.href) {
+          show("Could not load <b>" + t.href.split("/").slice(0, 3).join("/") +
+            "</b>. This demo needs internet access for its React/Babel CDNs — reconnect and reload.");
+        }
+      }, true);
+      setTimeout(function () {
+        if (window.__SPLITZY_MOUNTED__ || typeof React === "undefined") return;
+        if (location.protocol === "file:") {
+          show("Opening this page straight from disk blocks the browser from loading " +
+            "<b>js/app.jsx</b> (file:// fetches are disallowed). Serve the folder over http — " +
+            "e.g. run <code>python -m http.server 8000</code> (or <code>py -m http.server 8000</code>) " +
+            "inside <b>react-demo/</b>, then open <b>http://localhost:8000</b>.");
+        }
+      }, 2500);
+    })();
+  </script>
+
+  <script type="text/babel" data-presets="react" src="js/app.jsx"></script>
+</body>
+</html>

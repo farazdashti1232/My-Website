@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Quiet linen-and-light texture study: warm woven fabric with soft
+       folds, a blurred notebook shape and amber candle bokeh.
+       Decorative placeholder artwork generated locally for this demo. -->
+  <defs>
+    <linearGradient id="linenBase" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3e6d0"/>
+      <stop offset="0.55" stop-color="#e9d3ae"/>
+      <stop offset="1" stop-color="#d9b878"/>
+    </linearGradient>
+    <linearGradient id="foldA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a6134" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#8a6134" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#8a6134" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="foldB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fffaf0" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fffaf0" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#fffaf0" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="weaveV" width="13" height="13" patternUnits="userSpaceOnUse">
+      <rect width="13" height="13" fill="none"/>
+      <rect width="2.2" height="13" fill="#a97c42" opacity="0.14"/>
+    </pattern>
+    <pattern id="weaveH" width="13" height="13" patternUnits="userSpaceOnUse">
+      <rect width="13" height="13" fill="none"/>
+      <rect width="13" height="2.2" fill="#7d5528" opacity="0.10"/>
+    </pattern>
+    <radialGradient id="candle" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#ffdf9e" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#f0a63f" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#f0a63f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2410" stop-opacity="0.10"/>
+      <stop offset="0.5" stop-color="#3a2410" stop-opacity="0"/>
+      <stop offset="1" stop-color="#3a2410" stop-opacity="0.28"/>
+    </linearGradient>
+    <filter id="warp" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="3" seed="5" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="26"/>
+    </filter>
+    <filter id="blurMid" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="blurSoft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="grainT" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="17" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.24  0 0 0 0 0.12  0 0 0 0.22 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#linenBase)"/>
+
+  <!-- woven threads, gently warped -->
+  <g filter="url(#warp)">
+    <rect width="1024" height="1024" fill="url(#weaveV)"/>
+    <rect width="1024" height="1024" fill="url(#weaveH)"/>
+    <!-- soft fabric folds -->
+    <rect x="120" y="-40" width="150" height="1120" fill="url(#foldB)" transform="rotate(4 196 512)"/>
+    <rect x="150" y="-40" width="220" height="1120" fill="url(#foldA)" transform="rotate(4 260 512)"/>
+    <rect x="560" y="-40" width="130" height="1120" fill="url(#foldB)" transform="rotate(-3 625 512)"/>
+    <rect x="600" y="-40" width="240" height="1120" fill="url(#foldA)" transform="rotate(-3 720 512)"/>
+  </g>
+
+  <!-- blurred notebook corner, bottom left -->
+  <g filter="url(#blurMid)">
+    <rect x="-60" y="700" width="520" height="420" rx="18" fill="#fdf7ea" opacity="0.85" transform="rotate(-9 200 910)"/>
+    <rect x="-40" y="724" width="520" height="30" fill="#c98b3d" opacity="0.5" transform="rotate(-9 220 739)"/>
+    <ellipse cx="720" cy="880" rx="230" ry="110" fill="#8a5a26" opacity="0.20"/>
+  </g>
+
+  <!-- amber candle bokeh, upper right -->
+  <g filter="url(#blurSoft)">
+    <circle cx="800" cy="240" r="120" fill="url(#candle)"/>
+    <circle cx="806" cy="252" r="34" fill="#ffe9bd" opacity="0.9"/>
+    <circle cx="672" cy="368" r="16" fill="#ffdd9a" opacity="0.55"/>
+  </g>
+
+  <rect width="1024" height="1024" fill="url(#vig)"/>
+  <rect width="1024" height="1024" fill="#000" filter="url(#grainT)" opacity="0.55"/>
+</svg>

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-label="A city skyline under a heavy, layered storm sky at dusk, with rain falling over the harbour.">
+  <!-- Skyline hero: dramatic stratocumulus sky over a cold harbour city.
+       Cool slate / ice-blue palette matching the app stylesheet.
+       Decorative placeholder artwork, drawn locally as vector illustration. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1622"/>
+      <stop offset="0.26" stop-color="#1c2f47"/>
+      <stop offset="0.52" stop-color="#33506f"/>
+      <stop offset="0.72" stop-color="#5d7d9c"/>
+      <stop offset="0.86" stop-color="#93b0c9"/>
+      <stop offset="1" stop-color="#c3d7e8"/>
+    </linearGradient>
+    <radialGradient id="horizonGlow" cx="0.62" cy="0.74" r="0.46">
+      <stop offset="0" stop-color="#e6c58a" stop-opacity="0.55"/>
+      <stop offset="0.42" stop-color="#a9bcd0" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#a9bcd0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cloudA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#54708c"/>
+      <stop offset="1" stop-color="#1b2c41"/>
+    </linearGradient>
+    <linearGradient id="cloudB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7d9cb8"/>
+      <stop offset="1" stop-color="#2c445f"/>
+    </linearGradient>
+    <linearGradient id="cloudLit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe0ef"/>
+      <stop offset="1" stop-color="#6f8ea9"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#101c29"/>
+      <stop offset="0.55" stop-color="#182739"/>
+      <stop offset="1" stop-color="#0b1420"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fadc6"/>
+      <stop offset="0.35" stop-color="#41607e"/>
+      <stop offset="1" stop-color="#101d2b"/>
+    </linearGradient>
+    <linearGradient id="rainFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#cfe2f2" stop-opacity="0.30"/>
+      <stop offset="0.55" stop-color="#cfe2f2" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#cfe2f2" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.46" r="0.78">
+      <stop offset="0.52" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#05090f" stop-opacity="0.60"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="softer" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="52"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.055"/></feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1536" height="1024" fill="url(#sky)"/>
+  <rect width="1536" height="1024" fill="url(#horizonGlow)"/>
+
+  <!-- upper storm bank -->
+  <g filter="url(#softer)" opacity="0.92">
+    <ellipse cx="300" cy="120" rx="480" ry="160" fill="url(#cloudA)"/>
+    <ellipse cx="880" cy="70" rx="520" ry="140" fill="#16253a"/>
+    <ellipse cx="1400" cy="150" rx="420" ry="170" fill="url(#cloudA)"/>
+  </g>
+  <!-- breaking mid clouds, lit from the horizon -->
+  <g filter="url(#soft)">
+    <path d="M-60 330 C 180 250 360 386 560 320 C 760 254 900 372 1120 316 C 1320 266 1450 348 1600 300 L1600 470 L-60 470 Z" fill="url(#cloudB)" opacity="0.82"/>
+    <path d="M-40 420 C 220 356 420 452 640 402 C 880 348 1040 440 1280 396 C 1440 366 1520 414 1620 392 L1620 520 L-40 520 Z" fill="url(#cloudLit)" opacity="0.34"/>
+    <ellipse cx="1010" cy="470" rx="360" ry="76" fill="#dfeaf4" opacity="0.20"/>
+  </g>
+  <!-- low cloud shelf above the rooftops -->
+  <g filter="url(#soft)" opacity="0.85">
+    <path d="M-60 560 C 260 500 520 596 820 552 C 1120 508 1340 580 1620 536 L1620 700 L-60 700 Z" fill="#3f5c7a"/>
+    <path d="M-60 620 C 300 574 620 648 940 610 C 1240 576 1420 632 1620 606 L1620 720 L-60 720 Z" fill="#22364d" opacity="0.85"/>
+  </g>
+
+  <!-- rain curtains -->
+  <g stroke="url(#rainFade)" stroke-width="2.2" stroke-linecap="round">
+    <g transform="rotate(-9 300 500)">
+      <line x1="60" y1="360" x2="60" y2="700"/><line x1="104" y1="420" x2="104" y2="760"/>
+      <line x1="150" y1="330" x2="150" y2="690"/><line x1="196" y1="450" x2="196" y2="780"/>
+      <line x1="242" y1="380" x2="242" y2="720"/><line x1="288" y1="470" x2="288" y2="800"/>
+      <line x1="334" y1="350" x2="334" y2="700"/><line x1="380" y1="440" x2="380" y2="770"/>
+    </g>
+    <g transform="rotate(-7 1180 460)" opacity="0.7">
+      <line x1="1080" y1="300" x2="1080" y2="620"/><line x1="1128" y1="360" x2="1128" y2="680"/>
+      <line x1="1176" y1="290" x2="1176" y2="610"/><line x1="1224" y1="350" x2="1224" y2="670"/>
+      <line x1="1272" y1="310" x2="1272" y2="630"/>
+    </g>
+  </g>
+
+  <!-- distant ridge -->
+  <path d="M-20 726 L160 690 L300 712 L470 668 L640 706 L820 676 L1000 710 L1180 682 L1360 714 L1560 690 L1560 780 L-20 780 Z"
+        fill="#1d2f43" opacity="0.75"/>
+
+  <!-- skyline -->
+  <g>
+    <rect x="120" y="628" width="72" height="184" fill="url(#tower)"/>
+    <rect x="196" y="676" width="54" height="136" fill="#0e1a26"/>
+    <rect x="256" y="560" width="86" height="252" fill="url(#tower)"/>
+    <rect x="348" y="642" width="60" height="170" fill="#101d2b"/>
+    <rect x="416" y="470" width="98" height="342" fill="url(#tower)"/>
+    <path d="M416 470 h98 l-49 -74 Z" fill="#16283c"/>
+    <rect x="522" y="606" width="64" height="206" fill="#0d1926"/>
+    <rect x="594" y="524" width="88" height="288" fill="url(#tower)"/>
+    <rect x="690" y="656" width="52" height="156" fill="#111e2c"/>
+    <rect x="750" y="404" width="104" height="408" fill="url(#tower)"/>
+    <rect x="795" y="352" width="14" height="56" fill="#16283c"/>
+    <rect x="800" y="300" width="4" height="56" fill="#1c3149"/>
+    <rect x="862" y="580" width="70" height="232" fill="#0e1a27"/>
+    <rect x="940" y="500" width="92" height="312" fill="url(#tower)"/>
+    <path d="M940 500 h92 l-46 -58 Z" fill="#152639"/>
+    <rect x="1040" y="644" width="58" height="168" fill="#101c29"/>
+    <rect x="1106" y="558" width="84" height="254" fill="url(#tower)"/>
+    <rect x="1198" y="678" width="50" height="134" fill="#0d1825"/>
+    <rect x="1256" y="612" width="76" height="200" fill="url(#tower)"/>
+    <rect x="1340" y="686" width="58" height="126" fill="#101d2a"/>
+    <rect x="1406" y="640" width="68" height="172" fill="url(#tower)"/>
+  </g>
+
+  <!-- window lights: cool with a few warm interior lights -->
+  <g>
+    <g fill="#9dc4e6" opacity="0.5">
+      <rect x="136" y="648" width="9" height="13"/><rect x="156" y="676" width="9" height="13"/><rect x="172" y="712" width="9" height="13"/>
+      <rect x="272" y="586" width="9" height="13"/><rect x="294" y="624" width="9" height="13"/><rect x="316" y="666" width="9" height="13"/>
+      <rect x="436" y="502" width="10" height="14"/><rect x="462" y="548" width="10" height="14"/><rect x="488" y="596" width="10" height="14"/>
+      <rect x="612" y="556" width="10" height="14"/><rect x="640" y="604" width="10" height="14"/><rect x="660" y="662" width="10" height="14"/>
+      <rect x="770" y="438" width="10" height="14"/><rect x="798" y="488" width="10" height="14"/><rect x="826" y="546" width="10" height="14"/>
+      <rect x="958" y="536" width="10" height="14"/><rect x="986" y="588" width="10" height="14"/><rect x="1012" y="646" width="10" height="14"/>
+      <rect x="1124" y="592" width="10" height="14"/><rect x="1150" y="646" width="10" height="14"/>
+      <rect x="1274" y="644" width="10" height="14"/><rect x="1300" y="700" width="10" height="14"/>
+      <rect x="1424" y="672" width="10" height="14"/><rect x="1448" y="726" width="10" height="14"/>
+    </g>
+    <g fill="#f0c98a" opacity="0.62">
+      <rect x="148" y="742" width="9" height="13"/><rect x="286" y="704" width="9" height="13"/>
+      <rect x="448" y="654" width="10" height="14"/><rect x="812" y="620" width="10" height="14"/>
+      <rect x="974" y="668" width="10" height="14"/><rect x="1138" y="704" width="10" height="14"/>
+      <rect x="782" y="536" width="10" height="14"/><rect x="622" y="700" width="10" height="14"/>
+    </g>
+  </g>
+
+  <!-- quay / waterline and reflections -->
+  <rect x="0" y="812" width="1536" height="212" fill="url(#water)"/>
+  <g opacity="0.30" fill="#cfe2f2">
+    <rect x="110" y="836" width="1220" height="4" rx="2"/>
+    <rect x="240" y="872" width="900" height="3" rx="1.5"/>
+    <rect x="420" y="912" width="560" height="3" rx="1.5"/>
+  </g>
+  <g opacity="0.22">
+    <rect x="756" y="816" width="14" height="150" fill="#9dc4e6"/>
+    <rect x="424" y="816" width="12" height="118" fill="#9dc4e6"/>
+    <rect x="948" y="816" width="12" height="104" fill="#f0c98a"/>
+    <rect x="266" y="816" width="10" height="84" fill="#9dc4e6"/>
+  </g>
+  <!-- beacons -->
+  <g>
+    <circle cx="802" cy="300" r="5" fill="#e2604f" opacity="0.9"/>
+    <circle cx="802" cy="300" r="13" fill="#e2604f" opacity="0.22"/>
+    <circle cx="1370" cy="686" r="4" fill="#e2604f" opacity="0.75"/>
+  </g>
+
+  <rect width="1536" height="1024" fill="url(#vig)"/>
+  <rect width="1536" height="1024" filter="url(#grain)" opacity="0.5"/>
+</svg>

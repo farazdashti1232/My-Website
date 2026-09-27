@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768" role="img" aria-label="A dense cluster of towers with a snow-capped mountain behind them under a clear autumn sky.">
+  <!-- Tokyo: Kanto Plain tower cluster, Fuji on the horizon, crisp clear air. Local vector placeholder art. -->
+  <defs>
+    <linearGradient id="tk-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#20406b"/><stop offset="0.40" stop-color="#5b85b4"/>
+      <stop offset="0.72" stop-color="#a7c4de"/><stop offset="1" stop-color="#e3eef7"/>
+    </linearGradient>
+    <linearGradient id="tk-tower" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#243a53"/><stop offset="0.5" stop-color="#33526f"/><stop offset="1" stop-color="#1a2b3e"/>
+    </linearGradient>
+    <linearGradient id="tk-fuji" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2f7fb"/><stop offset="0.30" stop-color="#b3c6da"/><stop offset="1" stop-color="#5b7695"/>
+    </linearGradient>
+    <linearGradient id="tk-bay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9dbdd6"/><stop offset="1" stop-color="#2f4f6e"/>
+    </linearGradient>
+    <filter id="tk-blur"><feGaussianBlur stdDeviation="12"/></filter>
+    <radialGradient id="tk-vig" cx="0.5" cy="0.44" r="0.8">
+      <stop offset="0.56" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0b1523" stop-opacity="0.42"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="768" fill="url(#tk-sky)"/>
+  <g filter="url(#tk-blur)" opacity="0.8">
+    <ellipse cx="180" cy="122" rx="220" ry="40" fill="#cfdeeb"/>
+    <ellipse cx="700" cy="80" rx="260" ry="34" fill="#dfeaf3"/>
+    <ellipse cx="900" cy="210" rx="180" ry="30" fill="#c3d5e4" opacity="0.8"/>
+  </g>
+  <!-- Fuji -->
+  <path d="M470 470 L640 210 L680 254 L716 206 L870 470 Z" fill="url(#tk-fuji)"/>
+  <path d="M640 210 L680 254 L716 206 L756 268 L734 274 L712 246 L684 282 L656 246 L626 278 L604 262 Z" fill="#fbfdff"/>
+  <path d="M470 470 L870 470 L910 512 L430 512 Z" fill="#6c86a4" opacity="0.55"/>
+  <!-- far ridge -->
+  <path d="M-10 512 L120 460 L250 504 L370 452 L470 508 L-10 560 Z M700 500 L820 452 L930 498 L1034 456 L1034 540 L700 540 Z" fill="#4b6683" opacity="0.7"/>
+  <!-- tower cluster -->
+  <g>
+    <rect x="40" y="470" width="66" height="200" fill="url(#tk-tower)"/>
+    <rect x="112" y="512" width="52" height="158" fill="#1c2f44"/>
+    <rect x="172" y="430" width="78" height="240" fill="url(#tk-tower)"/>
+    <rect x="258" y="490" width="56" height="180" fill="#203650"/>
+    <rect x="322" y="392" width="86" height="278" fill="url(#tk-tower)"/>
+    <rect x="416" y="464" width="60" height="206" fill="#1b2d42"/>
+    <!-- Tokyo Tower motif -->
+    <g transform="translate(492 0)">
+      <path d="M50 330 L92 690 L8 690 Z" fill="#a8563f" opacity="0.92"/>
+      <path d="M20 560 h52 M28 500 h36 M36 440 h22" stroke="#8a452f" stroke-width="6"/>
+      <rect x="44" y="286" width="7" height="52" fill="#b4694f"/>
+      <circle cx="47" cy="282" r="6" fill="#e07a5c"/>
+    </g>
+    <rect x="612" y="450" width="70" height="220" fill="url(#tk-tower)"/>
+    <rect x="690" y="504" width="52" height="166" fill="#1d3046"/>
+    <rect x="750" y="358" width="92" height="312" fill="url(#tk-tower)"/>
+    <path d="M750 358 h92 l-46 -54 Z" fill="#2b4560"/>
+    <rect x="850" y="486" width="60" height="184" fill="#1a2c40"/>
+    <rect x="918" y="432" width="76" height="238" fill="url(#tk-tower)"/>
+  </g>
+  <!-- curtain-wall window grids -->
+  <g stroke="#a8c8e2" stroke-width="1.6" opacity="0.30">
+    <path d="M188 452 v196 M206 452 v196 M224 452 v196 M242 452 v196"/>
+    <path d="M338 414 v232 M356 414 v232 M374 414 v232 M392 414 v232"/>
+    <path d="M766 384 v248 M784 384 v248 M802 384 v248 M820 384 v248"/>
+    <path d="M932 454 v200 M950 454 v200 M968 454 v200"/>
+  </g>
+  <g fill="#f4dfae" opacity="0.55">
+    <rect x="196" y="600" width="8" height="10"/><rect x="230" y="560" width="8" height="10"/><rect x="344" y="614" width="8" height="10"/>
+    <rect x="380" y="530" width="8" height="10"/><rect x="772" y="588" width="8" height="10"/><rect x="812" y="500" width="8" height="10"/>
+    <rect x="938" y="574" width="8" height="10"/><rect x="962" y="626" width="8" height="10"/><rect x="56" y="612" width="8" height="10"/>
+  </g>
+  <!-- bay in front -->
+  <rect x="0" y="668" width="1024" height="100" fill="url(#tk-bay)"/>
+  <g opacity="0.32" fill="#e2eef7"><rect x="80" y="692" width="700" height="3" rx="1.5"/><rect x="260" y="722" width="560" height="3" rx="1.5"/></g>
+  <path d="M120 682 h96 l-12 14 h-72 Z" fill="#16283a"/><path d="M700 686 h110 l-13 14 h-84 Z" fill="#16283a"/>
+  <rect width="1024" height="768" fill="url(#tk-vig)"/>
+</svg>

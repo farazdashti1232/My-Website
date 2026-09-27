@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768" role="img" aria-label="A northern harbour town of low corrugated rooftops beneath a snow-dusted ridge, under a pale marine sky.">
+  <!-- Reykjavik: bay, tin-roof houses, snowline ridge, low sea light. Local vector placeholder art. -->
+  <defs>
+    <linearGradient id="rk-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3550"/><stop offset="0.45" stop-color="#517d9f"/>
+      <stop offset="0.78" stop-color="#a8c6da"/><stop offset="1" stop-color="#ddeaf3"/>
+    </linearGradient>
+    <linearGradient id="rk-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7ea6c1"/><stop offset="0.5" stop-color="#3c6285"/><stop offset="1" stop-color="#182f46"/>
+    </linearGradient>
+    <linearGradient id="rk-ridge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8f1f8"/><stop offset="0.42" stop-color="#8aa4bd"/><stop offset="1" stop-color="#3c5670"/>
+    </linearGradient>
+    <radialGradient id="rk-sun" cx="0.18" cy="0.72" r="0.42">
+      <stop offset="0" stop-color="#fdf2dd" stop-opacity="0.72"/><stop offset="1" stop-color="#fdf2dd" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="rk-blur"><feGaussianBlur stdDeviation="14"/></filter>
+    <radialGradient id="rk-vig" cx="0.5" cy="0.45" r="0.8">
+      <stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0a1420" stop-opacity="0.45"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="768" fill="url(#rk-sky)"/>
+  <rect width="1024" height="768" fill="url(#rk-sun)"/>
+  <g filter="url(#rk-blur)" opacity="0.85">
+    <ellipse cx="220" cy="150" rx="260" ry="62" fill="#7f9cb8"/>
+    <ellipse cx="660" cy="96" rx="300" ry="52" fill="#5f7f9d"/>
+    <ellipse cx="900" cy="196" rx="220" ry="46" fill="#a9c3d6" opacity="0.7"/>
+  </g>
+  <!-- snow-capped ridge -->
+  <path d="M-10 470 L120 350 L210 424 L330 296 L440 400 L540 318 L660 430 L770 360 L880 442 L1034 386 L1034 560 L-10 560 Z" fill="url(#rk-ridge)"/>
+  <path d="M330 296 L388 356 L356 366 L330 340 L302 368 L272 350 Z M540 318 L588 372 L556 380 L532 358 L504 384 L486 366 Z" fill="#eef5fb" opacity="0.86"/>
+  <path d="M-10 520 L140 456 L300 512 L470 462 L640 520 L800 476 L1034 528 L1034 600 L-10 600 Z" fill="#2f4a64" opacity="0.9"/>
+  <!-- harbour water -->
+  <rect x="0" y="586" width="1024" height="182" fill="url(#rk-sea)"/>
+  <g opacity="0.34" fill="#dceaf4"><rect x="60" y="618" width="480" height="3" rx="1.5"/><rect x="200" y="656" width="620" height="3" rx="1.5"/><rect x="330" y="700" width="420" height="3" rx="1.5"/></g>
+  <!-- row of tin-roof houses -->
+  <g>
+    <g id="rk-h">
+      <rect x="70" y="500" width="92" height="88" fill="#c8d6e2"/><path d="M62 500 h108 l-54 -40 Z" fill="#8e4f4a"/>
+      <rect x="200" y="512" width="80" height="76" fill="#dbe6ee"/><path d="M192 512 h96 l-48 -36 Z" fill="#3f6f7d"/>
+      <rect x="316" y="496" width="96" height="92" fill="#b9cadb"/><path d="M308 496 h112 l-56 -42 Z" fill="#a8703a"/>
+      <rect x="448" y="516" width="76" height="72" fill="#e2ecf2"/><path d="M440 516 h92 l-46 -34 Z" fill="#4b6f9c"/>
+      <rect x="558" y="502" width="90" height="86" fill="#c3d3e0"/><path d="M550 502 h106 l-53 -40 Z" fill="#7d5a86"/>
+      <rect x="686" y="520" width="74" height="68" fill="#dfe9f1"/><path d="M678 520 h90 l-45 -32 Z" fill="#8e4f4a"/>
+      <rect x="798" y="506" width="88" height="82" fill="#c6d5e2"/><path d="M790 506 h104 l-52 -38 Z" fill="#3f6f7d"/>
+    </g>
+    <g fill="#f6e6c0" opacity="0.7">
+      <rect x="86" y="522" width="14" height="18"/><rect x="122" y="522" width="14" height="18"/>
+      <rect x="216" y="534" width="13" height="17"/><rect x="336" y="520" width="14" height="18"/><rect x="372" y="520" width="14" height="18"/>
+      <rect x="466" y="538" width="13" height="16"/><rect x="580" y="526" width="14" height="18"/><rect x="704" y="542" width="13" height="16"/>
+      <rect x="818" y="530" width="14" height="18"/><rect x="850" y="530" width="14" height="18"/>
+    </g>
+  </g>
+  <!-- church spire landmark -->
+  <g><rect x="470" y="404" width="30" height="112" fill="#eef3f7"/><path d="M464 404 h42 l-21 -66 Z" fill="#7f4a45"/><rect x="482" y="330" width="5" height="20" fill="#cfd9e2"/></g>
+  <!-- moored boats -->
+  <g fill="#152736"><path d="M120 596 h74 l-10 16 h-54 Z"/><path d="M560 600 h84 l-11 16 h-62 Z"/><path d="M840 598 h66 l-9 15 h-48 Z"/></g>
+  <rect width="1024" height="768" fill="url(#rk-vig)"/>
+</svg>

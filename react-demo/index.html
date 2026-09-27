@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Splitzy — split bills fairly (React demo)</title>
+  <meta name="description" content="Splitzy: a bill-splitting demo built with React 18 (CDN, no build step). Hooks, context, memoized balances and minimal settle-up transfers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 6v20M8 12l6 4-6 4M24 12l-6 4 6 4' stroke='%23ecfdf5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- React 18 UMD (production) + Babel standalone: JSX compiles in the browser, no build step -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div class="boot" role="status">Loading Splitzy…</div>
+  </div>
+  <div id="boot-error" class="boot-error" role="alert" hidden></div>
+
+  <script>
+    /* Graceful boot diagnostics: React UMD/Babel need https CDNs, and Babel's
+       in-browser loader fetches js/app.jsx via XHR (blocked on file://). */
+    (function () {
+      var show = function (html) {
+        var el = document.getElementById("boot-error");
+        if (el && el.getAttribute("hidden") !== null) {
+          el.removeAttribute("hidden");
+          el.innerHTML = html;
+        }
+      };
+      window.addEventListener("error", function (e) {
+        var t = e.target;
+        if (t && (t.tagName === "SCRIPT" || t.tagName === "LINK") && t.href) {
+          show("Could not load <b>" + t.href.split("/").slice(0, 3).join("/") +
+            "</b>. This demo needs internet access for its React/Babel CDNs — reconnect and reload.");
+        }
+      }, true);
+      setTimeout(function () {
+        if (window.__SPLITZY_MOUNTED__ || typeof React === "undefined") return;
+        if (location.protocol === "file:") {
+          show("Opening this page straight from disk blocks the browser from loading " +
+            "<b>js/app.jsx</b> (file:// fetches are disallowed). Serve the folder over http — " +
+            "e.g. run <code>python -m http.server 8000</code> (or <code>py -m http.server 8000</code>) " +
+            "inside <b>react-demo/</b>, then open <b>http://localhost:8000</b>.");
+        }
+      }, 2500);
+    })();
+  </script>
+
+  <script type="text/babel" data-presets="react" src="js/app.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skyline — a live weather dashboard powered by the Open-Meteo API. Vanilla HTML, CSS and JavaScript." />
+  <title>Skyline · Live Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%85%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+        <path d="M3 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M5 20v-8l4-3v11M13 20V6l6 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="18.5" cy="4.5" r="2" fill="currentColor" opacity=".8"/>
+      </svg>
+      <h1>Skyline</h1>
+      <span class="brand-tag">live weather</span>
+    </div>
+
+    <div class="header-controls">
+      <div class="unit-toggle" role="group" aria-label="Temperature unit">
+        <button type="button" id="btn-celsius" class="unit-btn is-active" aria-pressed="true" data-unit="c">°C</button>
+        <button type="button" id="btn-fahrenheit" class="unit-btn" aria-pressed="false" data-unit="f">°F</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Search -->
+    <section class="search-section" aria-label="City search">
+      <div class="search-wrap" id="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input type="search" id="city-input" class="city-input" placeholder="Search a city — e.g. Oslo, Tokyo, Lisbon…"
+               autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false"
+               aria-controls="suggestions" aria-autocomplete="list" aria-label="Search city" />
+        <button type="button" id="btn-geolocate" class="geo-btn" title="Use my location" aria-label="Use my location">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 2.2a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6Z" fill="currentColor"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul id="suggestions" class="suggestions" role="listbox" aria-label="City suggestions" hidden></ul>
+        <p id="search-status" class="sr-only" role="status" aria-live="polite"></p>
+      </div>
+      <p class="geo-hint" id="geo-hint" hidden></p>
+    </section>
+
+    <!-- Error banner -->
+    <section id="error-banner" class="error-banner" hidden role="alert">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M12 3 1.8 20.2h20.4L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M12 10v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="17.3" r="1" fill="currentColor"/>
+      </svg>
+      <div class="error-copy">
+        <strong id="error-title">Something went wrong</strong>
+        <span id="error-detail"></span>
+      </div>
+      <button type="button" id="btn-retry" class="retry-btn">Retry</button>
+    </section>
+
+    <!-- Skeletons -->
+    <div id="skeleton-wrap" hidden aria-hidden="true">
+      <div class="card hero-card skeleton-card">
+        <div class="sk sk-line w-40"></div>
+        <div class="sk sk-big"></div>
+        <div class="sk-grid">
+          <div class="sk sk-chip"></div><div class="sk sk-chip"></div>
+          <div class="sk sk-chip"></div><div class="sk sk-chip"></div>
+        </div>
+      </div>
+      <div class="card chart-card skeleton-card">
+        <div class="sk sk-line w-30"></div>
+        <div class="sk sk-chart"></div>
+      </div>
+      <div class="strip-skeleton">
+        <div class="sk sk-day"></div><div class="sk sk-day"></div><div class="sk sk-day"></div>
+        <div class="sk sk-day"></div><div class="sk sk-day"></div><div class="sk sk-day"></div>
+        <div class="sk sk-day"></div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <section id="empty-state" class="empty-state" hidden>
+      <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true" class="empty-icon">
+        <path d="M20 44a9 9 0 0 1 1.5-17.9A13 13 0 0 1 46 28.5 8.5 8.5 0 0 1 45 45.5H20Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="m24 54 4-6M34 56l4-6M44 54l4-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+      </svg>
+      <h2>No location selected</h2>
+      <p>Skyline reads live data from the Open-Meteo API. Search for a city above, or share your location with the crosshair button.</p>
+    </section>
+
+    <!-- Dashboard -->
+    <div id="dashboard" hidden>
+      <section class="card hero-card" id="hero-card" aria-live="polite" aria-label="Current conditions">
+        <div class="hero-top">
+          <div>
+            <h2 class="hero-place" id="hero-place">—</h2>
+            <p class="hero-meta" id="hero-meta">—</p>
+          </div>
+          <div class="hero-icon" id="hero-icon" role="img" aria-label="Weather icon"></div>
+        </div>
+        <div class="hero-temp-row">
+          <span class="hero-temp" id="hero-temp">—</span>
+          <div class="hero-desc-col">
+            <span class="hero-desc" id="hero-desc">—</span>
+            <span class="hero-feels" id="hero-feels">—</span>
+          </div>
+        </div>
+        <ul class="hero-stats" id="hero-stats"></ul>
+      </section>
+
+      <section class="card chart-card" aria-label="Next 24 hours forecast">
+        <div class="chart-head">
+          <h3>Next 24 hours</h3>
+          <div class="chart-legend" aria-hidden="true">
+            <span class="lg-item"><span class="lg-swatch lg-line"></span>Temperature</span>
+            <span class="lg-item"><span class="lg-swatch lg-bar"></span>Rain chance</span>
+          </div>
+        </div>
+        <div class="chart-scroll">
+          <div id="temp-chart" class="temp-chart"></div>
+        </div>
+      </section>
+
+      <section class="week-section" aria-label="7-day forecast">
+        <h3 class="week-title">7-day outlook</h3>
+        <div class="week-strip" id="week-strip" role="list"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Built by Faraz Malang Jan — personal demo project · Data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a></p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

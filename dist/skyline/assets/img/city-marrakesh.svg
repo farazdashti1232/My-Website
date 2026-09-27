@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768" role="img" aria-label="An ochre walled city with a square minaret and palm trees, with a snow-dusted mountain range behind under a hot hazy sky.">
+  <!-- Marrakesh: red-clay ksar walls, Koutoubia-style minaret, Atlas snow ridge, date palms. Local vector placeholder art. -->
+  <defs>
+    <linearGradient id="mk-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b5f80"/><stop offset="0.34" stop-color="#8fa6b3"/>
+      <stop offset="0.62" stop-color="#d8b98a"/><stop offset="0.84" stop-color="#f0cf9c"/><stop offset="1" stop-color="#f7e2bd"/>
+    </linearGradient>
+    <linearGradient id="mk-atlas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e5eaf1"/><stop offset="0.34" stop-color="#93a3b6"/><stop offset="1" stop-color="#5d6d84"/>
+    </linearGradient>
+    <linearGradient id="mk-wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c98a52"/><stop offset="0.55" stop-color="#a96a38"/><stop offset="1" stop-color="#7c4a26"/>
+    </linearGradient>
+    <linearGradient id="mk-wallDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b0763f"/><stop offset="1" stop-color="#6b3f20"/>
+    </linearGradient>
+    <radialGradient id="mk-sun" cx="0.72" cy="0.36" r="0.4">
+      <stop offset="0" stop-color="#fff3d2" stop-opacity="0.85"/><stop offset="0.5" stop-color="#f6d79b" stop-opacity="0.26"/><stop offset="1" stop-color="#f6d79b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mk-blur"><feGaussianBlur stdDeviation="13"/></filter>
+    <radialGradient id="mk-vig" cx="0.5" cy="0.46" r="0.8">
+      <stop offset="0.56" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#3a2110" stop-opacity="0.42"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="768" fill="url(#mk-sky)"/>
+  <rect width="1024" height="768" fill="url(#mk-sun)"/>
+  <g filter="url(#mk-blur)" opacity="0.7">
+    <ellipse cx="250" cy="150" rx="280" ry="40" fill="#e9d6bb"/>
+    <ellipse cx="780" cy="104" rx="260" ry="32" fill="#f2e2c9"/>
+  </g>
+  <!-- High Atlas wall of peaks -->
+  <path d="M-10 470 L110 366 L190 424 L280 340 L370 416 L470 330 L560 410 L660 348 L760 424 L860 358 L960 430 L1034 392 L1034 500 L-10 500 Z" fill="url(#mk-atlas)"/>
+  <g fill="#f6f9fc" opacity="0.88">
+    <path d="M280 340 L322 384 L300 390 L278 366 L254 392 L236 376 Z"/>
+    <path d="M470 330 L514 378 L492 384 L468 358 L444 386 L424 370 Z"/>
+    <path d="M660 348 L700 394 L680 400 L658 374 L634 400 L616 384 Z"/>
+  </g>
+  <!-- palm oasis band -->
+  <g fill="#6f7f4a" opacity="0.85">
+    <path d="M-10 500 L1034 494 L1034 540 L-10 546 Z"/>
+  </g>
+  <g stroke="#5a4326" stroke-width="4" fill="none" opacity="0.9">
+    <path d="M150 540 v-46 M600 538 v-44 M830 540 v-40 M300 542 v-38"/>
+  </g>
+  <g fill="#59713f">
+    <g transform="translate(150 492)"><path d="M0 0 L-26 -14 M0 0 L26 -14 M0 0 L-16 -24 M0 0 L16 -24 M0 0 L0 -28" stroke="#59713f" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+    <g transform="translate(600 492)"><path d="M0 0 L-24 -13 M0 0 L24 -13 M0 0 L-14 -22 M0 0 L14 -22 M0 0 L0 -26" stroke="#59713f" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+    <g transform="translate(830 498)"><path d="M0 0 L-22 -12 M0 0 L22 -12 M0 0 L-12 -20 M0 0 L12 -20 M0 0 L0 -24" stroke="#59713f" stroke-width="6" stroke-linecap="round" fill="none"/></g>
+    <g transform="translate(300 502)"><path d="M0 0 L-20 -11 M0 0 L20 -11 M0 0 L-11 -19 M0 0 L11 -19 M0 0 L0 -22" stroke="#59713f" stroke-width="6" stroke-linecap="round" fill="none"/></g>
+  </g>
+  <!-- crenellated city wall -->
+  <path d="M-10 606 L1034 596 L1034 700 L-10 700 Z" fill="url(#mk-wallDark)"/>
+  <g fill="#96612f">
+    <rect x="0" y="586" width="30" height="24"/><rect x="46" y="586" width="30" height="24"/><rect x="92" y="586" width="30" height="24"/>
+    <rect x="138" y="586" width="30" height="24"/><rect x="184" y="586" width="30" height="24"/><rect x="230" y="586" width="30" height="24"/>
+    <rect x="276" y="586" width="30" height="24"/><rect x="322" y="586" width="30" height="24"/><rect x="368" y="586" width="30" height="24"/>
+    <rect x="414" y="586" width="30" height="24"/><rect x="700" y="584" width="30" height="24"/><rect x="746" y="584" width="30" height="24"/>
+    <rect x="792" y="584" width="30" height="24"/><rect x="838" y="584" width="30" height="24"/><rect x="884" y="584" width="30" height="24"/>
+    <rect x="930" y="584" width="30" height="24"/><rect x="976" y="584" width="30" height="24"/>
+  </g>
+  <!-- kasbah blocks -->
+  <g>
+    <rect x="60" y="520" width="120" height="86" fill="url(#mk-wall)"/>
+    <rect x="196" y="546" width="88" height="60" fill="#b57a41"/>
+    <rect x="640" y="530" width="128" height="76" fill="url(#mk-wall)"/>
+    <rect x="790" y="552" width="96" height="54" fill="#b1743c"/>
+    <rect x="900" y="524" width="110" height="82" fill="url(#mk-wall)"/>
+  </g>
+  <!-- Koutoubia-style minaret -->
+  <g>
+    <rect x="470" y="380" width="104" height="226" fill="url(#mk-wall)"/>
+    <rect x="470" y="366" width="104" height="20" fill="#c9915a"/>
+    <g fill="#8a5426">
+      <rect x="486" y="404" width="16" height="42" rx="8"/><rect x="514" y="404" width="16" height="42" rx="8"/><rect x="542" y="404" width="16" height="42" rx="8"/>
+      <rect x="486" y="470" width="16" height="42" rx="8"/><rect x="514" y="470" width="16" height="42" rx="8"/><rect x="542" y="470" width="16" height="42" rx="8"/>
+    </g>
+    <g fill="#e9c188" opacity="0.55"><rect x="500" y="540" width="22" height="40" rx="11"/><rect x="540" y="540" width="22" height="40" rx="11"/></g>
+    <rect x="500" y="344" width="44" height="24" fill="#b57f45"/>
+    <path d="M522 300 L536 344 h-28 Z" fill="#8a5426"/>
+    <g stroke="#7d4a20" stroke-width="3"><path d="M522 300 v-22"/></g>
+    <g fill="#f0d6a4"><circle cx="522" cy="272" r="6"/><circle cx="522" cy="256" r="4"/><circle cx="522" cy="244" r="3"/></g>
+  </g>
+  <!-- shaded archway + foreground ground -->
+  <path d="M-10 700 L1034 690 L1034 768 L-10 768 Z" fill="#8c5a2c"/>
+  <path d="M-10 700 L1034 690 L1034 726 L-10 736 Z" fill="#a86b34" opacity="0.7"/>
+  <g fill="#5e3717" opacity="0.75">
+    <ellipse cx="180" cy="742" rx="70" ry="9"/><ellipse cx="520" cy="748" rx="86" ry="10"/><ellipse cx="860" cy="740" rx="72" ry="9"/>
+  </g>
+  <rect width="1024" height="768" fill="url(#mk-vig)"/>
+</svg>
